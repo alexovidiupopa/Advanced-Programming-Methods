@@ -2,13 +2,13 @@ package Controller;
 
 import Model.GenericVehicle;
 
-import Repository.Repository;
+import Repository.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Controller {
-    private Repository repo = new Repository();
+    private RepositoryInterface repo = new Repository();
 
     public void add(GenericVehicle vehicle) throws Exception{
         if (vehicle.getPrice()<0) {
