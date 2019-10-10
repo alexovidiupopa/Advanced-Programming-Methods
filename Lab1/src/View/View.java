@@ -35,20 +35,17 @@ public class View {
         controller.delete(index);
     }
 
-    private void printAllObjects(){
-        for (GenericVehicle vehicle : controller.getAllVehicles())
-            System.out.println(vehicle);
-    }
     private void printRequestedObjects(){
-        for(GenericVehicle vehicle: controller.getVehiclesWithSpecialPrice())
-            System.out.println(vehicle);
+        GenericVehicle[] vehicles = controller.getWantedVehicles();
+        for(int i=0;i<vehicles.length;i++)
+            if (vehicles[i]!=null)
+                System.out.println(vehicles[i]);
     }
     private void printMenuOptions(){
         System.out.println("Press:");
         System.out.println("1 to add an entity.");
         System.out.println("2 to delete an entity.");
         System.out.println("3 to print all vehicles with a price > 1000.");
-        System.out.println("4 to print all vehicles.");
         System.out.println("0 to exit the program.");
     }
     private void printAddMenuOptions(){
@@ -93,9 +90,9 @@ public class View {
                 case 3:
                     this.printRequestedObjects();
                     break;
-                case 4:
-                    this.printAllObjects();
-                    break;
+//                case 4:
+//                    this.printAllObjects();
+//                    break;
                 case 0:
                     stop = true;
                     break;
