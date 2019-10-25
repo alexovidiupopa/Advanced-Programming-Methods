@@ -1,0 +1,20 @@
+package com.company.Model.Values;
+
+import com.company.Model.Types.BoolType;
+import com.company.Model.Types.Type;
+
+public class BoolValue implements Value {
+    private boolean val;
+    BoolValue (boolean val){
+        this.val = val;
+    }
+    public Boolean getValue(){
+        return this.val;
+    }
+    public String toString(){
+        return String.valueOf(this.val);
+    }
+    public Type getType(){
+        return new BoolType();
+    }
+}
