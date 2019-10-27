@@ -1,8 +1,12 @@
 package com.company.Model.ADTs;
 
+import com.company.Model.Exceptions.MyException;
+
 public interface IStack<T> {
-    T pop();
+    T pop() throws MyException;
     void push(T value);
-    T top();
     boolean isEmpty();
+
+    @Override
+    String toString();
 }

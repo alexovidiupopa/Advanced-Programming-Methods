@@ -1,8 +1,13 @@
 package com.company.Model.ADTs;
 
-public interface IDictionary<T,U> {
+import com.company.Model.Exceptions.MyException;
 
-    U getValue(T key);
-    boolean isDefined(T key);
-    void update(T key, U value);
+public interface IDictionary<K,V> {
+
+    public V lookup(K key) throws MyException;
+    boolean isDefined(K key);
+    void update(K key, V value);
+
+    @Override
+    String toString();
 }

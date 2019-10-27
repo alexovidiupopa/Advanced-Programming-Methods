@@ -1,5 +1,6 @@
 package com.company.Model.Types;
 
+import com.company.Model.Values.IntValue;
 import com.sun.jdi.IntegerType;
 
 public class IntType implements Type {
@@ -12,6 +13,7 @@ public class IntType implements Type {
     public String toString(){
        return "int";
    }
+    public IntValue defaultValue(){return new IntValue(0);}
 }
 
 

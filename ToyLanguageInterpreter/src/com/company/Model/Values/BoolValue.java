@@ -5,7 +5,7 @@ import com.company.Model.Types.Type;
 
 public class BoolValue implements Value {
     private boolean val;
-    BoolValue (boolean val){
+    public BoolValue(boolean val){
         this.val = val;
     }
     public Boolean getValue(){

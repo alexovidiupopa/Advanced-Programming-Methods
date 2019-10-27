@@ -6,7 +6,7 @@ import com.company.Model.Types.Type;
 public class IntValue implements Value {
 
     private int val;
-    IntValue(int val){
+    public IntValue(int val){
         this.val = val;
     }
     public int getValue(){
