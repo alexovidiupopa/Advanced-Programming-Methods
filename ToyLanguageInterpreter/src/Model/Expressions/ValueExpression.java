@@ -5,7 +5,7 @@ import Model.Exceptions.MyException;
 import Model.Values.Value;
 
 public class ValueExpression implements Expression {
-    Value value;
+    private Value value;
 
     public ValueExpression(Value val) {
         this.value = val;

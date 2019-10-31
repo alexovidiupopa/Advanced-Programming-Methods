@@ -5,7 +5,7 @@ import Model.Exceptions.MyException;
 import Model.Values.Value;
 
 public class VariableExpression implements Expression {
-    String id;
+    private String id;
 
     public VariableExpression(String id) {
         this.id = id;

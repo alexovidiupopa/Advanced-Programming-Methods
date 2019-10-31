@@ -68,17 +68,21 @@ public class View {
     private void chooseExecMode() throws MyException{
         System.out.println("1 for one-step\n" +
                 "2 for all steps\n" +
-                "3 to change the print flag  (Print flag is currently set to" + this.printFlag+")\n" +
+                "3 to change the print flag  (Print flag is currently set to " + this.printFlag+").\n" +
                 "0 to exit");
         int option;
         try {
             option = Integer.valueOf(this.keyboard.nextLine());
             switch (option) {
                 case 1:
-                    this.controller.executeOneStep(this.programState);
+                    String outOneStep = this.controller.executeOneStepWrapper();
+                    if(this.printFlag==1)
+                        System.out.println(outOneStep);
                     break;
                 case 2:
-                    this.controller.executeAllStep();
+                    String outAllStep = this.controller.executeAllStep();
+                    if (this.printFlag==1)
+                        System.out.println(outAllStep);
                     throw new MyException("Exit");
                 case 3:
                     this.printFlag=1-this.printFlag;

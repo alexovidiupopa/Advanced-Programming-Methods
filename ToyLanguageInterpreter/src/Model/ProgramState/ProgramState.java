@@ -7,10 +7,10 @@ import Model.Statements.IStatement;
 import Model.Values.Value;
 
 public class ProgramState {
-    IStack<IStatement> executionStack;
-    IDictionary<String, Value> symbolTable;
-    IList<Value> output;
-    IStatement originalProgram;
+    private IStack<IStatement> executionStack;
+    private IDictionary<String, Value> symbolTable;
+    private IList<Value> output;
+    //IStatement originalProgram;
 
     public IStack<IStatement> getExecutionStack() {
         return executionStack;
@@ -22,7 +22,7 @@ public class ProgramState {
                 "executionStack= " + executionStack.toString() +"\n" +
                 "symbolTable= " + symbolTable.toString() + "\n" +
                 "output= " + output.toString() +
-                '}';
+                "}\n" ;
     }
 
     public void setExecutionStack(IStack<IStatement> executionStack) {
@@ -49,7 +49,7 @@ public class ProgramState {
         this.executionStack = executionStack;
         this.symbolTable = symbolTable;
         this.output = output;
-        this.originalProgram = originalProgram;
+        //this.originalProgram = originalProgram;
         this.executionStack.push(originalProgram);
     }
 }

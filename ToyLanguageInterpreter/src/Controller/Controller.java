@@ -22,15 +22,21 @@ public class Controller {
     }
 
     public String executeOneStepWrapper() throws MyException{
-
+        ProgramState programState = this.repo.getCurrentProgram();
+        String status="Program before one step execution:\n" + programState.toString();
+        this.executeOneStep(programState);
+        return status +"Program after one step execution:\n" + programState.toString();
     }
-    public void executeAllStep() throws MyException{
+    public String executeAllStep() throws MyException{
         ProgramState prog = this.repo.getCurrentProgram();
+        String programStates="";
+        programStates+=prog.toString();
         while(!prog.getExecutionStack().isEmpty()){
-            System.out.println(prog);
             this.executeOneStep(prog);
+            programStates+=prog.toString();
         }
-        System.out.println(prog);
+        //programStates+=prog.toString();
+        return programStates;
     }
 
     public IRepository getRepo(){return this.repo;}

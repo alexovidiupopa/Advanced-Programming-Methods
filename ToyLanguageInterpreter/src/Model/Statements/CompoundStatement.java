@@ -4,7 +4,7 @@ import Model.ADTs.IStack;
 import Model.ProgramState.ProgramState;
 
 public class CompoundStatement implements IStatement {
-    IStatement first, second;
+    private IStatement first, second;
 
     public CompoundStatement(IStatement first, IStatement second) {
         this.first = first;

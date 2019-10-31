@@ -7,8 +7,8 @@ import Model.Types.Type;
 import Model.Values.Value;
 
 public class VariableDeclarationStatement implements IStatement{
-    String name;
-    Type type;
+    private String name;
+    private Type type;
 
     public VariableDeclarationStatement(String name, Type type) {
         this.name = name;

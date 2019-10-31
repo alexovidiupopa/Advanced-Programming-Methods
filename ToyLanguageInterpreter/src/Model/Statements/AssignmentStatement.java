@@ -7,8 +7,8 @@ import Model.ProgramState.ProgramState;
 import Model.Values.Value;
 
 public class AssignmentStatement implements IStatement {
-    String id;
-    Expression exp;
+    private String id;
+    private Expression exp;
     public AssignmentStatement(String id, Expression exp) {
         this.id = id;
         this.exp = exp;

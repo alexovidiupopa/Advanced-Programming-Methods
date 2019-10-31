@@ -12,7 +12,7 @@ public class MyStack<T> implements IStack {
     }
 
     @Override
-    public Object pop() throws MyException {
+    public T pop() throws MyException {
         return stack.pop();
     }
 

@@ -8,7 +8,7 @@ import Model.Values.Value;
 
 public class PrintStatement implements IStatement {
 
-    Expression expression;
+    private Expression expression;
 
     public PrintStatement(Expression expression) {
         this.expression = expression;

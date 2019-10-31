@@ -8,7 +8,7 @@ import Model.Values.Value;
 
 public class ArithmeticExpression implements Expression {
     private Expression exp1,exp2;
-    private char op; // 1-+, 2--, 3-*, 4-/
+    private char op;
 
     public ArithmeticExpression(char op,Expression exp1, Expression exp2) {
         this.exp1 = exp1;

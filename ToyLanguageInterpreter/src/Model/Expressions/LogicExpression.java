@@ -7,8 +7,8 @@ import Model.Values.BoolValue;
 import Model.Values.Value;
 
 public class LogicExpression implements Expression {
-    Expression exp1,exp2;
-    String op;
+    private Expression exp1,exp2;
+    private String op;
 
     @Override
     public Value evaluate(IDictionary<String, Value> table) throws MyException {
