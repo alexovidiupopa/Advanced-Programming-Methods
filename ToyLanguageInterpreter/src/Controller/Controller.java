@@ -33,9 +33,11 @@ public class Controller {
         ProgramState prog = this.repo.getCurrentProgram();
         String programStates="";
         programStates+=prog.toString();
+        this.repo.logProgramStateExecution();
         while(!prog.getExecutionStack().isEmpty()){
             this.executeOneStep(prog);
             programStates+=prog.toString();
+            this.repo.logProgramStateExecution();
         }
         //programStates+=prog.toString();
         return programStates;
