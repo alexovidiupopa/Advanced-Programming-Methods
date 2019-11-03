@@ -36,4 +36,12 @@ public class MyDictionary<K,V> implements IDictionary {
     public void update(Object key, Object value) {
         dictionary.put((K) key, (V) value);
     }
+
+    @Override
+    public void delete(Object key) throws MyException {
+        if (!dictionary.containsKey((K)key))
+            throw new MyException("Key doesn't exist.");
+        dictionary.remove((K)key);
+
+    }
 }

@@ -6,6 +6,8 @@ import Model.ProgramState.ProgramState;
 import Model.Values.BoolValue;
 import Model.Values.Value;
 
+import java.io.IOException;
+
 public class IfStatement implements IStatement {
     private Expression expression;
     private IStatement ifStatement, elseStatement;
@@ -16,7 +18,7 @@ public class IfStatement implements IStatement {
         this.elseStatement = elseStatement;
     }
 
-    public ProgramState execute(ProgramState state) throws MyException {
+    public ProgramState execute(ProgramState state) throws MyException, IOException {
         Value result = this.expression.evaluate(state.getSymbolTable());
         if(((BoolValue) result).getValue()==true)
             this.ifStatement.execute(state);

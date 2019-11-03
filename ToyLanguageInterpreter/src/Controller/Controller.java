@@ -6,6 +6,8 @@ import Model.ProgramState.ProgramState;
 import Model.Statements.IStatement;
 import Repository.IRepository;
 
+import java.io.IOException;
+
 public class Controller {
     private IRepository repo;
     private String programState;
@@ -13,7 +15,7 @@ public class Controller {
         this.repo = repo;
     }
 
-    public ProgramState executeOneStep(ProgramState state) throws MyException {
+    public ProgramState executeOneStep(ProgramState state) throws MyException, IOException {
         IStack<IStatement> stack = state.getExecutionStack();
         if (stack.isEmpty())
             throw new MyException("Empty execution stack.");
@@ -21,13 +23,13 @@ public class Controller {
         return currentStatement.execute(state);
     }
 
-    public String executeOneStepWrapper() throws MyException{
+    public String executeOneStepWrapper() throws MyException, IOException {
         ProgramState programState = this.repo.getCurrentProgram();
         String status="Program before one step execution:\n" + programState.toString();
         this.executeOneStep(programState);
         return status +"Program after one step execution:\n" + programState.toString();
     }
-    public String executeAllStep() throws MyException{
+    public String executeAllStep() throws MyException, IOException {
         ProgramState prog = this.repo.getCurrentProgram();
         String programStates="";
         programStates+=prog.toString();

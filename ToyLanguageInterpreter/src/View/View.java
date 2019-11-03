@@ -14,6 +14,7 @@ import Model.Values.BoolValue;
 import Model.Values.IntValue;
 import Model.Values.Value;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class View {
@@ -65,37 +66,34 @@ public class View {
             System.out.println(e.getMessage());
         }
     }
-    private void chooseExecMode() throws MyException{
+    private void chooseExecMode() throws MyException, IOException {
         System.out.println("1 for one-step\n" +
                 "2 for all steps\n" +
                 "3 to change the print flag  (Print flag is currently set to " + this.printFlag+").\n" +
                 "0 to exit");
         int option;
-        try {
-            option = Integer.valueOf(this.keyboard.nextLine());
-            switch (option) {
-                case 1:
-                    String outOneStep = this.controller.executeOneStepWrapper();
-                    if(this.printFlag==1)
-                        System.out.println(outOneStep);
-                    break;
-                case 2:
-                    String outAllStep = this.controller.executeAllStep();
-                    if (this.printFlag==1)
-                        System.out.println(outAllStep);
-                    throw new MyException("Exit");
-                case 3:
-                    this.printFlag=1-this.printFlag;
-                    break;
-                case 0:
-                    throw new MyException("Exit");
-                default:
-                    throw new MyException("Wrong cmd.");
-            }
+
+        option = Integer.valueOf(this.keyboard.nextLine());
+        switch (option) {
+            case 1:
+                String outOneStep = this.controller.executeOneStepWrapper();
+                if(this.printFlag==1)
+                    System.out.println(outOneStep);
+                break;
+            case 2:
+                String outAllStep = this.controller.executeAllStep();
+                if (this.printFlag==1)
+                    System.out.println(outAllStep);
+                throw new MyException("Exit");
+            case 3:
+                this.printFlag=1-this.printFlag;
+                break;
+            case 0:
+                throw new MyException("Exit");
+            default:
+                throw new MyException("Wrong cmd.");
         }
-        catch(MyException exc){
-            throw exc;
-        }
+
     }
 
     public void run() {
@@ -109,7 +107,7 @@ public class View {
                 try{
                     chooseExecMode();
                 }
-                catch (MyException e){
+                catch (MyException | IOException e){
                     System.out.println(e.getMessage());
                     if (e.getMessage().equals("Exit"))
                         break;

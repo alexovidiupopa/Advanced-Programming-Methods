@@ -2,15 +2,27 @@ package Model.ProgramState;
 
 import Model.ADTs.IDictionary;
 import Model.ADTs.IList;
+import Model.ADTs.IPair;
 import Model.ADTs.IStack;
 import Model.Statements.IStatement;
 import Model.Values.Value;
+
+import java.io.BufferedReader;
 
 public class ProgramState {
     private IStack<IStatement> executionStack;
     private IDictionary<String, Value> symbolTable;
     private IList<Value> output;
-    //IStatement originalProgram;
+    private IDictionary<String, BufferedReader> fileTable;
+
+    public IDictionary<String, BufferedReader> getFileTable() {
+        return fileTable;
+    }
+
+    public void setFileTable(IDictionary<String, BufferedReader> fileTable) {
+        this.fileTable = fileTable;
+    }
+    private IStatement originalProgram;
 
     public IStack<IStatement> getExecutionStack() {
         return executionStack;
@@ -49,7 +61,7 @@ public class ProgramState {
         this.executionStack = executionStack;
         this.symbolTable = symbolTable;
         this.output = output;
-        //this.originalProgram = originalProgram;
+        //this.originalProgram = clone((Object)originalProgram);
         this.executionStack.push(originalProgram);
     }
 }
