@@ -9,8 +9,10 @@ import Model.ProgramState.ProgramState;
 import Model.Statements.*;
 import Model.Types.BoolType;
 import Model.Types.IntType;
+import Model.Types.StringType;
 import Model.Values.BoolValue;
 import Model.Values.IntValue;
+import Model.Values.StringValue;
 import Model.Values.Value;
 import Repository.IRepository;
 import Repository.Repository;
@@ -24,8 +26,13 @@ public class Interpreter {
                         new ValueExpression(new IntValue(1)))), new PrintStatement(new VariableExpression("b"))))));
         IStatement ex3 = new CompoundStatement(new VariableDeclarationStatement("a",new BoolType()), new CompoundStatement(new VariableDeclarationStatement("v", new IntType()),new CompoundStatement(new AssignmentStatement("a", new ValueExpression(new BoolValue(true)))
                 , new CompoundStatement(new IfStatement(new VariableExpression("a"),new AssignmentStatement("v",new ValueExpression(new IntValue(2))), new AssignmentStatement("v", new ValueExpression(new IntValue(3)))), new PrintStatement(new VariableExpression("v"))))));
-
-
+        /*IStatement ex4 = new CompoundStatement(new OpenFile("var_f", "test.in"),
+                new CompoundStatement(new ReadFile(new VariableExpression("var_f"), "var_c"),
+                        new CompoundStatement(new PrintStatement(new VariableExpression("var_c")),
+                                new CompoundStatement(new IfStatement(new VariableExpression("var_c"),
+                                        new CompoundStatement(new ReadFile(new VariableExpression("var_f"), "var_c"),
+                                                new PrintStatement(new VariableExpression("var_c"))), new PrintStatement(new ValueExpression(new StringValue("")))),
+                                        new CloseFile(new VariableExpression("var_f"))))));*/
         IStack<IStatement> exeStack1 = new MyStack<IStatement>();
         IDictionary<String, Value> symbolTable1 = new MyDictionary<String,Value>();
         IList<Value> output1 = new MyList<Value>();
@@ -49,6 +56,14 @@ public class Interpreter {
         IRepository repo3 = new Repository("log3.txt");
         Controller controller3 = new Controller(repo3);
         controller3.addProgram(prog3);
+
+        /*IStack<IStatement> exeStack4 = new MyStack<IStatement>();
+        IDictionary<String, Value> symbolTable4 = new MyDictionary<String,Value>();
+        IList<Value> output4 = new MyList<Value>();
+        ProgramState prog4 = new ProgramState(exeStack4,symbolTable4,output4,ex3);
+        IRepository repo4 = new Repository("log4.txt");
+        Controller controller4 = new Controller(repo4);
+        controller4.addProgram(prog4);*/
 
         TextMenu menu = new TextMenu();
         menu.addCommand(new ExitCommand("0","exit"));

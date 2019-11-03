@@ -30,11 +30,10 @@ public class ProgramState {
 
     @Override
     public String toString() {
-        return "ProgramState:{\n" +
-                "ExecutionStack\n " + executionStack.toString() +"\n" +
-                "SymbolTable\n " + symbolTable.toString() + "\n" +
-                "Output\n" + output.toString() +
-                "}\n" ;
+        return "ProgramState:\n" +
+                "ExecutionStack\n" + executionStack.toString() +"\n" +
+                "SymbolTable\n" + symbolTable.toString() + "\n" +
+                "Output\n" + output.toString() ;
     }
 
     public void setExecutionStack(IStack<IStatement> executionStack) {
