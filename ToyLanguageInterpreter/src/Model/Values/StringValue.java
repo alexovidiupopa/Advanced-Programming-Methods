@@ -9,6 +9,11 @@ public class StringValue implements Value {
     public String getValue(){return this.value;}
 
     @Override
+    public String toString() {
+        return "\"" + value + "\"";
+    }
+
+    @Override
     public Type getType() {
         return new StringType();
     }

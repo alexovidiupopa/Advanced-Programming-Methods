@@ -12,20 +12,24 @@ import Model.Values.Value;
 import java.io.BufferedReader;
 import java.io.IOException;
 
-public class ReadFile implements IStatement {
+public class ReadFileStatement implements IStatement {
     private Expression expression;
-    private StringValue variableName;
+    private String variableName;
 
-    public ReadFile(Expression expression, StringValue variableName) {
+    @Override
+    public String toString() {
+        return "read("+expression.toString() + "," + variableName + ")";
+    }
+
+    public ReadFileStatement(Expression expression, String variableName) {
         this.expression = expression;
         this.variableName = variableName;
     }
 
     @Override
     public ProgramState execute(ProgramState state) throws MyException, IOException {
-        String var_name = this.variableName.getValue();
-        if (state.getSymbolTable().isDefined(var_name)){
-            if (state.getSymbolTable().lookup(var_name).getType().equals(new IntType())){
+        if (state.getSymbolTable().isDefined(variableName)){
+            if (state.getSymbolTable().lookup(variableName).getType().equals(new IntType())){
                 Value evaluationValue;
                 evaluationValue = this.expression.evaluate(state.getSymbolTable());
                 if (evaluationValue.getType().equals(new StringType())){
@@ -39,7 +43,7 @@ public class ReadFile implements IStatement {
                             readValue = new IntValue(0);
                         else
                             readValue = new IntValue(Integer.parseInt(line));
-                        state.getSymbolTable().update(var_name,readValue);
+                        state.getSymbolTable().update(variableName,readValue);
                     }
                     else
                         throw new MyException("No entry associated in the file table.");

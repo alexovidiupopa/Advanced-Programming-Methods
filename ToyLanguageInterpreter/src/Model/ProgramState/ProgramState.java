@@ -1,9 +1,6 @@
 package Model.ProgramState;
 
-import Model.ADTs.IDictionary;
-import Model.ADTs.IList;
-import Model.ADTs.IPair;
-import Model.ADTs.IStack;
+import Model.ADTs.*;
 import Model.Statements.IStatement;
 import Model.Values.Value;
 
@@ -33,7 +30,8 @@ public class ProgramState {
         return "ProgramState:\n" +
                 "ExecutionStack\n" + executionStack.toString() +"\n" +
                 "SymbolTable\n" + symbolTable.toString() + "\n" +
-                "Output\n" + output.toString() ;
+                "Output\n" + output.toString()  +
+                "File table\n" + fileTable.toString() + "\n" ;
     }
 
     public void setExecutionStack(IStack<IStatement> executionStack) {
@@ -56,11 +54,20 @@ public class ProgramState {
         this.output = output;
     }
 
-    public ProgramState(IStack<IStatement> executionStack, IDictionary<String, Value> symbolTable, IList<Value> output, IStatement originalProgram) {
+    public ProgramState(IStack<IStatement> executionStack, IDictionary<String, Value> symbolTable, IList<Value> output, IDictionary<String,BufferedReader> fileTable,IStatement originalProgram) {
         this.executionStack = executionStack;
         this.symbolTable = symbolTable;
         this.output = output;
+        this.fileTable = fileTable;
         //this.originalProgram = clone((Object)originalProgram);
+        this.executionStack.push(originalProgram);
+    }
+
+    public ProgramState(IStatement originalProgram){
+        this.executionStack = new MyStack<IStatement>();
+        this.symbolTable = new MyDictionary<String,Value>();
+        this.output = new MyList<Value>();
+        this.fileTable = new MyDictionary<String,BufferedReader>();
         this.executionStack.push(originalProgram);
     }
 }
