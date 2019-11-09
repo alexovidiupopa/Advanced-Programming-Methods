@@ -47,7 +47,7 @@ public class RelationalExpression implements Expression {
                     case "!=":
                         return new BoolValue(number1!=number2);
                     default:
-                        throw new MyException("Invalid operand");
+                        throw new MyException("Invalid operator");
                 }
             }
             else throw new MyException("Second operand is not an int.");

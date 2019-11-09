@@ -31,7 +31,7 @@ public class ProgramState {
                 "ExecutionStack\n" + executionStack.toString() +"\n" +
                 "SymbolTable\n" + symbolTable.toString() + "\n" +
                 "Output\n" + output.toString()  +
-                "File table\n" + fileTable.toString() + "\n" ;
+                "File table\n" + fileTable.toString() + "\n" + "\n\n\n" ;
     }
 
     public void setExecutionStack(IStack<IStatement> executionStack) {
