@@ -11,7 +11,7 @@ public class ProgramState {
     private IDictionary<String, Value> symbolTable;
     private IList<Value> output;
     private IDictionary<String, BufferedReader> fileTable;
-
+    private IHeap<Value> heap;
     public IDictionary<String, BufferedReader> getFileTable() {
         return fileTable;
     }
@@ -31,7 +31,16 @@ public class ProgramState {
                 "ExecutionStack\n" + executionStack.toString() +"\n" +
                 "SymbolTable\n" + symbolTable.toString() + "\n" +
                 "Output\n" + output.toString()  +
-                "File table\n" + fileTable.toString() + "\n" + "\n\n\n" ;
+                "File table\n" + fileTable.toString() + "\n" +
+                "Heap\n" + heap.toString() + "\n\n\n" ;
+    }
+
+    public IHeap<Value> getHeap() {
+        return heap;
+    }
+
+    public void setHeap(IHeap<Value> heap) {
+        this.heap = heap;
     }
 
     public void setExecutionStack(IStack<IStatement> executionStack) {
@@ -68,6 +77,7 @@ public class ProgramState {
         this.symbolTable = new MyDictionary<String,Value>();
         this.output = new MyList<Value>();
         this.fileTable = new MyDictionary<String,BufferedReader>();
+        this.heap = new MyHeap<>();
         this.executionStack.push(originalProgram);
     }
 }

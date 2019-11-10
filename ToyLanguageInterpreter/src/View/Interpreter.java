@@ -1,9 +1,8 @@
 package View;
 
 import Controller.Controller;
-import Model.Expressions.ArithmeticExpression;
-import Model.Expressions.ValueExpression;
-import Model.Expressions.VariableExpression;
+import Model.ADTs.WhileStatement;
+import Model.Expressions.*;
 import Model.ProgramState.ProgramState;
 import Model.Statements.*;
 import Model.Types.BoolType;
@@ -32,7 +31,16 @@ public class Interpreter {
                                                 new ReadFileStatement(new VariableExpression("varf"),"varc"),new CompoundStatement(
                                                         new PrintStatement(new VariableExpression("varc")),new CompoundStatement(
                         new ReadFileStatement(new VariableExpression("varf"),"varc") ,new CompoundStatement(new PrintStatement(new VariableExpression("varc")),new CloseFileStatement(new VariableExpression("varf"))))))))));
-
+        IStatement ex5 = new CompoundStatement(
+                new VariableDeclarationStatement("v",new IntType()),
+                new CompoundStatement(
+                        new AssignmentStatement("v",new ValueExpression(new IntValue(10))),
+                        new WhileStatement(
+                                new RelationalExpression(new VariableExpression("v"),new ValueExpression(new IntValue(0)),">"),
+                                new CompoundStatement(new PrintStatement(new VariableExpression("v")),
+                                        new AssignmentStatement( "v",new ArithmeticExpression('-',new VariableExpression("v"),new ValueExpression(new IntValue(1))))
+                                  )
+                )));
         ProgramState prog1 = new ProgramState(ex1);
         IRepository repo1 = new Repository("log1.txt");
         Controller controller1 = new Controller(repo1);
@@ -53,12 +61,18 @@ public class Interpreter {
         Controller controller4 = new Controller(repo4);
         controller4.addProgram(prog4);
 
+        ProgramState prog5 = new ProgramState(ex5);
+        IRepository repo5 = new Repository("log5.txt");
+        Controller controller5 = new Controller(repo5);
+        controller5.addProgram(prog5);
+
         TextMenu menu = new TextMenu();
         menu.addCommand(new ExitCommand("0","exit"));
         menu.addCommand(new RunExample("1",ex1.toString(),controller1));
         menu.addCommand(new RunExample("2",ex2.toString(),controller2));
         menu.addCommand(new RunExample("3",ex3.toString(),controller3));
         menu.addCommand(new RunExample("4",ex4.toString(),controller4));
+        menu.addCommand(new RunExample("5",ex5.toString(),controller5));
         menu.show();
     }
 }
