@@ -52,6 +52,17 @@ public class Interpreter {
                                 new NewStatement("a",new VariableExpression("v")),new CompoundStatement(
                                 new NewStatement("v",new ValueExpression(new IntValue(30))),
                                 new PrintStatement(new ArithmeticExpression('+' ,new HeapReadExpression(new HeapReadExpression( new VariableExpression("a"))),new ValueExpression(new IntValue(5))))))))));
+        IStatement ex7 = new CompoundStatement(
+                new VariableDeclarationStatement("v",new ReferenceType(new IntType())),
+                new CompoundStatement(
+                        new NewStatement("v",new ValueExpression(new IntValue(20))),
+                        new CompoundStatement(
+                                new PrintStatement(new HeapReadExpression(new VariableExpression("v"))), new CompoundStatement(
+                                new VariableDeclarationStatement("a",new ReferenceType(new ReferenceType(new  IntType()))), new CompoundStatement(
+                                new NewStatement("a",new VariableExpression("v")),new CompoundStatement(
+                                new HeapWriteStatement("v",new ValueExpression(new IntValue(30))),
+                                new PrintStatement(new ArithmeticExpression('+' ,new HeapReadExpression(new HeapReadExpression( new VariableExpression("a"))),new ValueExpression(new IntValue(5))))))))));
+
         ProgramState prog1 = new ProgramState(ex1);
         IRepository repo1 = new Repository("log1.txt");
         Controller controller1 = new Controller(repo1);
@@ -82,6 +93,12 @@ public class Interpreter {
         Controller controller6 = new Controller(repo6);
         controller6.addProgram(prog6);
 
+        ProgramState prog7 = new ProgramState(ex7);
+        IRepository repo7 = new Repository("log7.txt");
+        Controller controller7 = new Controller(repo7);
+        controller7.addProgram(prog7);
+
+
         TextMenu menu = new TextMenu();
         menu.addCommand(new ExitCommand("0","exit"));
         menu.addCommand(new RunExample("1",ex1.toString(),controller1));
@@ -90,6 +107,7 @@ public class Interpreter {
         menu.addCommand(new RunExample("4",ex4.toString(),controller4));
         menu.addCommand(new RunExample("5",ex5.toString(),controller5));
         menu.addCommand(new RunExample("6",ex6.toString(),controller6));
+        menu.addCommand(new RunExample("7",ex7.toString(),controller7));
         menu.show();
     }
 }

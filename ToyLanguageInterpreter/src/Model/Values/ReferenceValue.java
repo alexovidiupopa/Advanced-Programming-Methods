@@ -20,7 +20,7 @@ public class ReferenceValue implements Value {
     public int getAddress() {
         return address;
     }
-
+    public Type getLocationType(){return locationType;}
     @Override
     public Type getType() {
         return new ReferenceType(locationType);

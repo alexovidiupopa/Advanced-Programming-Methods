@@ -19,7 +19,7 @@ public class HeapWriteStatement implements IStatement {
     }
     @Override
     public String toString() {
-        return "wH(" + var_name + " , " + exp.toString() + ")";
+        return "wH(" + var_name + "," + exp.toString() + ")";
     }
 
     @Override
@@ -30,7 +30,7 @@ public class HeapWriteStatement implements IStatement {
                 int address = ((ReferenceValue)val).getAddress();
                 if (state.getHeap().get(address)!=null){
                     Value evaluationValue = this.exp.evaluate(state.getSymbolTable(),state.getHeap());
-                    if (evaluationValue.equals(val)){
+                    if (evaluationValue.getType().equals(((ReferenceValue) val).getLocationType())){
                         state.getHeap().put(address,evaluationValue);
                     }
                     else

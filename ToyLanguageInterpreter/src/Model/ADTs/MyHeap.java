@@ -3,6 +3,7 @@ package Model.ADTs;
 import Model.Types.Type;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class MyHeap<T> implements IHeap<T> {
     private HashMap<Integer, T> map;
@@ -36,11 +37,22 @@ public class MyHeap<T> implements IHeap<T> {
     }
 
     @Override
+    public Map<Integer, T> getContent() {
+        return map;
+    }
+
+    @Override
+    public void setContent(Map<Integer, T> content) {
+        this.map = (HashMap)content;
+    }
+
+    @Override
     public String toString() {
-        String s="";
+        String s="{";
         for(HashMap.Entry<Integer,T> entry : this.map.entrySet()){
             s+=entry.getKey().toString() + "->" + entry.getValue().toString() + "\n";
         }
+        s+="}";
         return s;
     }
 }

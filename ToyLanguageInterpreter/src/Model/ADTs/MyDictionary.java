@@ -3,6 +3,7 @@ package Model.ADTs;
 import Model.Exceptions.MyException;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class MyDictionary<K,V> implements IDictionary {
     private HashMap<K,V> dictionary;
@@ -43,5 +44,10 @@ public class MyDictionary<K,V> implements IDictionary {
             throw new MyException("Key doesn't exist.");
         dictionary.remove((K)key);
 
+    }
+
+    @Override
+    public Map getContent() {
+        return dictionary;
     }
 }

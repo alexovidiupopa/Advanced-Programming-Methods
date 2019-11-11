@@ -10,10 +10,12 @@ public class Repository implements IRepository {
     private List<ProgramState> programStates;
     private int currentIndex;
     private String path;
+    private boolean first;
     public Repository(String path) {
         this.programStates = new ArrayList<>();
         this.currentIndex=0;
         this.path = path;
+        this.first = true;
     }
 
     @Override
@@ -28,7 +30,14 @@ public class Repository implements IRepository {
 
     @Override
     public void logProgramStateExecution() throws IOException {
-        PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(this.path,true)));
+        PrintWriter writer;
+        if (first)
+        {
+            writer = new PrintWriter(new BufferedWriter(new FileWriter(this.path,false)));
+            first = false;
+        }
+        else
+            writer = new PrintWriter(new BufferedWriter(new FileWriter(this.path,true)));
         writer.print(this.programStates.get(this.currentIndex));
         writer.close();
     }

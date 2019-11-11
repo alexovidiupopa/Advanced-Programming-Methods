@@ -21,7 +21,7 @@ public class NewStatement implements IStatement{
 
     @Override
     public String toString() {
-        return "new(" + var_name + " , " + exp.toString() + ")";
+        return "new(" + var_name + "," + exp.toString() + ")";
     }
 
     @Override
@@ -30,7 +30,7 @@ public class NewStatement implements IStatement{
             Value value = state.getSymbolTable().lookup(var_name);
             if (value instanceof ReferenceValue){
                 Value expressionValue = exp.evaluate(state.getSymbolTable(),state.getHeap());
-                if(expressionValue.getType().equals(value.getType())){
+                if(expressionValue.getType().equals(((ReferenceValue) value).getLocationType())){
                     int location = state.getHeap().allocate(expressionValue);
                     state.getSymbolTable().update(var_name,new ReferenceValue(location,expressionValue.getType()));
                 }

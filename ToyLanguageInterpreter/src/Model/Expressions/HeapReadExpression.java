@@ -15,7 +15,7 @@ public class HeapReadExpression implements Expression {
 
     @Override
     public String toString() {
-        return "rH(" + " , " + exp.toString() + ")";
+        return "rH("  + exp.toString() + ")";
     }
 
     @Override
