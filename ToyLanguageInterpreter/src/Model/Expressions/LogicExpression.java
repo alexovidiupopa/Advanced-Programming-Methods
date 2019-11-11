@@ -1,6 +1,7 @@
 package Model.Expressions;
 
 import Model.ADTs.IDictionary;
+import Model.ADTs.IHeap;
 import Model.Exceptions.MyException;
 import Model.Types.BoolType;
 import Model.Values.BoolValue;
@@ -11,11 +12,11 @@ public class LogicExpression implements Expression {
     private String op;
 
     @Override
-    public Value evaluate(IDictionary<String, Value> table) throws MyException {
+    public Value evaluate(IDictionary<String, Value> table, IHeap<Value> heap) throws MyException {
         Value v1,v2;
-        v1 = exp1.evaluate(table);
+        v1 = exp1.evaluate(table,heap);
         if (v1.getType().equals(new BoolType())){
-            v2 = exp2.evaluate(table);
+            v2 = exp2.evaluate(table,heap);
             if (v2.getType().equals(new BoolType())){
                 BoolValue i1 = (BoolValue)v1;
                 BoolValue i2 = (BoolValue)v2;

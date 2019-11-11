@@ -1,7 +1,9 @@
 package Tests.Expresions;
 
 import Model.ADTs.IDictionary;
+import Model.ADTs.IHeap;
 import Model.ADTs.MyDictionary;
+import Model.ADTs.MyHeap;
 import Model.Exceptions.MyException;
 import Model.Expressions.ArithmeticExpression;
 import Model.Expressions.Expression;
@@ -29,8 +31,9 @@ class ArithmeticExpressionTest {
         Expression testExp  = new ArithmeticExpression('+',new ValueExpression(new IntValue(2)),new
                 ValueExpression(new IntValue(4)));
         IDictionary<String, Value> testTable = new MyDictionary<>() ;
+        IHeap<Value>testHeap = new MyHeap<>();
         try {
-            Value v = testExp.evaluate(testTable);
+            Value v = testExp.evaluate(testTable,testHeap);
             Assert.check(v.getType().equals(new IntType()));
             Assert.check(((IntValue)v).getValue()==new IntValue(6).getValue());
         } catch (MyException e) {
@@ -40,7 +43,7 @@ class ArithmeticExpressionTest {
         Expression testExp2  = new ArithmeticExpression('.',new ValueExpression(new IntValue(2)),new
                 ValueExpression(new IntValue(4)));
         try {
-            Value v = testExp.evaluate(testTable);
+            Value v = testExp.evaluate(testTable,testHeap);
         } catch (MyException e) {
             e.printStackTrace();
         }
@@ -48,7 +51,7 @@ class ArithmeticExpressionTest {
         Expression testExp3  = new ArithmeticExpression('+',new ValueExpression(new BoolValue(true)),new
                 ValueExpression(new IntValue(4)));
         try {
-            Value v = testExp.evaluate(testTable);
+            Value v = testExp.evaluate(testTable,testHeap);
         } catch (MyException e) {
             e.printStackTrace();
         }

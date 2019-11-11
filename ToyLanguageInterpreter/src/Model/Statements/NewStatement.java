@@ -8,6 +8,7 @@ import Model.Values.ReferenceValue;
 import Model.Values.Value;
 
 import java.io.IOException;
+import java.sql.Ref;
 
 public class NewStatement implements IStatement{
     private String var_name;
@@ -19,11 +20,16 @@ public class NewStatement implements IStatement{
     }
 
     @Override
+    public String toString() {
+        return "new(" + var_name + " , " + exp.toString() + ")";
+    }
+
+    @Override
     public ProgramState execute(ProgramState state) throws MyException, IOException {
         if (state.getSymbolTable().isDefined(var_name)){
             Value value = state.getSymbolTable().lookup(var_name);
-            if (value.getType().equals(new ReferenceType(null))){
-                Value expressionValue = exp.evaluate(state.getSymbolTable());
+            if (value instanceof ReferenceValue){
+                Value expressionValue = exp.evaluate(state.getSymbolTable(),state.getHeap());
                 if(expressionValue.getType().equals(value.getType())){
                     int location = state.getHeap().allocate(expressionValue);
                     state.getSymbolTable().update(var_name,new ReferenceValue(location,expressionValue.getType()));

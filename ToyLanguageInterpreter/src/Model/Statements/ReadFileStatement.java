@@ -31,7 +31,7 @@ public class ReadFileStatement implements IStatement {
         if (state.getSymbolTable().isDefined(variableName)){
             if (state.getSymbolTable().lookup(variableName).getType().equals(new IntType())){
                 Value evaluationValue;
-                evaluationValue = this.expression.evaluate(state.getSymbolTable());
+                evaluationValue = this.expression.evaluate(state.getSymbolTable(),state.getHeap());
                 if (evaluationValue.getType().equals(new StringType())){
                     StringValue downcastedValue = (StringValue) evaluationValue;
                     String expressionValue = downcastedValue.getValue();

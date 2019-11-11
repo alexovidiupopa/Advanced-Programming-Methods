@@ -1,7 +1,9 @@
 package Tests.Expresions;
 
 import Model.ADTs.IDictionary;
+import Model.ADTs.IHeap;
 import Model.ADTs.MyDictionary;
+import Model.ADTs.MyHeap;
 import Model.Exceptions.MyException;
 import Model.Expressions.Expression;
 import Model.Expressions.VariableExpression;
@@ -23,16 +25,17 @@ class VariableExpressionTest {
     void evaluate() {
         Expression testExp = new VariableExpression("var");
         IDictionary<String, Value> testTable = new MyDictionary<>();
+        IHeap<Value> testHeap = new MyHeap<>();
         testTable.update(testExp.toString(),new IntValue(6));
         try {
-            Assert.check(((IntValue)(testExp.evaluate(testTable))).getValue()==6);
+            Assert.check(((IntValue)(testExp.evaluate(testTable,testHeap))).getValue()==6);
         } catch (MyException e) {
             e.printStackTrace();
         }
         Expression testExpFail = new VariableExpression("varc");
 
         try {
-            Assert.check(((IntValue)(testExp.evaluate(testTable))).getValue()==6);
+            Assert.check(((IntValue)(testExp.evaluate(testTable,testHeap))).getValue()==6);
         } catch (MyException e) {
             e.printStackTrace();
         }

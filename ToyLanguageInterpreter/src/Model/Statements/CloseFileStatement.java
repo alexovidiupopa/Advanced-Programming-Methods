@@ -25,7 +25,7 @@ public class CloseFileStatement implements IStatement {
     @Override
     public ProgramState execute(ProgramState state) throws MyException, IOException {
         Value evaluationValue;
-        evaluationValue = this.expression.evaluate(state.getSymbolTable());
+        evaluationValue = this.expression.evaluate(state.getSymbolTable(),state.getHeap());
         if (evaluationValue.getType().equals(new StringType())) {
             StringValue downcastedValue = (StringValue) evaluationValue;
             String expressionValue = downcastedValue.getValue();

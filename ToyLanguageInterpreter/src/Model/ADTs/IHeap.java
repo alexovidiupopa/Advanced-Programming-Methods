@@ -5,4 +5,5 @@ public interface IHeap<T> {
     T get(int addr);
     void put(int addr, T val);
     T deallocate(int addr);
+
 }

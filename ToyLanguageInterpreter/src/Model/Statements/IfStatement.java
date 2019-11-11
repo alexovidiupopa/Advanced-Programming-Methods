@@ -19,7 +19,7 @@ public class IfStatement implements IStatement {
     }
 
     public ProgramState execute(ProgramState state) throws MyException, IOException {
-        Value result = this.expression.evaluate(state.getSymbolTable());
+        Value result = this.expression.evaluate(state.getSymbolTable(),state.getHeap());
         if(((BoolValue) result).getValue()==true)
             this.ifStatement.execute(state);
         else

@@ -1,6 +1,7 @@
 package Model.Expressions;
 
 import Model.ADTs.IDictionary;
+import Model.ADTs.IHeap;
 import Model.Exceptions.MyException;
 import Model.Types.IntType;
 import Model.Values.IntValue;
@@ -22,11 +23,11 @@ public class ArithmeticExpression implements Expression {
     }
 
     @Override
-    public Value evaluate(IDictionary<String, Value> table) throws MyException{
+    public Value evaluate(IDictionary<String, Value> table, IHeap<Value> heap) throws MyException{
         Value value1,value2;
-        value1 = exp1.evaluate(table);
+        value1 = exp1.evaluate(table,heap);
         if(value1.getType().equals(new IntType())){
-            value2 = exp2.evaluate(table);
+            value2 = exp2.evaluate(table,heap);
             if(value2.getType().equals(new IntType())){
                 IntValue toInteger1 = (IntValue)value1;
                 IntValue toInteger2 = (IntValue)value2;

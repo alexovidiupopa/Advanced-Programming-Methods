@@ -23,7 +23,7 @@ public class AssignmentStatement implements IStatement {
     public ProgramState execute(ProgramState state) throws MyException {
         IDictionary<String, Value> table = state.getSymbolTable();
         if (table.isDefined(this.id)){
-            Value result = this.exp.evaluate(table);
+            Value result = this.exp.evaluate(table,state.getHeap());
             if (result.getType().equals(table.lookup(this.id).getType()))
                 table.update(this.id,result);
             else

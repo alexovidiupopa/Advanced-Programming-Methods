@@ -1,12 +1,13 @@
 package View;
 
 import Controller.Controller;
-import Model.ADTs.WhileStatement;
+import Model.Statements.WhileStatement;
 import Model.Expressions.*;
 import Model.ProgramState.ProgramState;
 import Model.Statements.*;
 import Model.Types.BoolType;
 import Model.Types.IntType;
+import Model.Types.ReferenceType;
 import Model.Types.StringType;
 import Model.Values.BoolValue;
 import Model.Values.IntValue;
@@ -41,6 +42,16 @@ public class Interpreter {
                                         new AssignmentStatement( "v",new ArithmeticExpression('-',new VariableExpression("v"),new ValueExpression(new IntValue(1))))
                                   )
                 )));
+        IStatement ex6 = new CompoundStatement(
+                new VariableDeclarationStatement("v",new ReferenceType(new IntType())),
+                new CompoundStatement(
+                        new NewStatement("v",new ValueExpression(new IntValue(20))),
+                        new CompoundStatement(
+                                new PrintStatement(new HeapReadExpression(new VariableExpression("v"))), new CompoundStatement(
+                                new VariableDeclarationStatement("a",new ReferenceType(new ReferenceType(new  IntType()))), new CompoundStatement(
+                                new NewStatement("a",new VariableExpression("v")),new CompoundStatement(
+                                new NewStatement("v",new ValueExpression(new IntValue(30))),
+                                new PrintStatement(new ArithmeticExpression('+' ,new HeapReadExpression(new HeapReadExpression( new VariableExpression("a"))),new ValueExpression(new IntValue(5))))))))));
         ProgramState prog1 = new ProgramState(ex1);
         IRepository repo1 = new Repository("log1.txt");
         Controller controller1 = new Controller(repo1);
@@ -66,6 +77,11 @@ public class Interpreter {
         Controller controller5 = new Controller(repo5);
         controller5.addProgram(prog5);
 
+        ProgramState prog6 = new ProgramState(ex6);
+        IRepository repo6 = new Repository("log6.txt");
+        Controller controller6 = new Controller(repo6);
+        controller6.addProgram(prog6);
+
         TextMenu menu = new TextMenu();
         menu.addCommand(new ExitCommand("0","exit"));
         menu.addCommand(new RunExample("1",ex1.toString(),controller1));
@@ -73,6 +89,7 @@ public class Interpreter {
         menu.addCommand(new RunExample("3",ex3.toString(),controller3));
         menu.addCommand(new RunExample("4",ex4.toString(),controller4));
         menu.addCommand(new RunExample("5",ex5.toString(),controller5));
+        menu.addCommand(new RunExample("6",ex6.toString(),controller6));
         menu.show();
     }
 }

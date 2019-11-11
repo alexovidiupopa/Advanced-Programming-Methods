@@ -1,6 +1,7 @@
 package Model.Expressions;
 
 import Model.ADTs.IDictionary;
+import Model.ADTs.IHeap;
 import Model.Exceptions.MyException;
 import Model.Values.Value;
 
@@ -17,7 +18,7 @@ public class VariableExpression implements Expression {
     }
 
     @Override
-    public Value evaluate(IDictionary<String, Value> table) throws MyException {
+    public Value evaluate(IDictionary<String, Value> table, IHeap<Value> heap) throws MyException {
         return table.lookup(id);
     }
 }

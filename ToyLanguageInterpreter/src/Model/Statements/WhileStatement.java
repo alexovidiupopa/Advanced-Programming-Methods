@@ -1,9 +1,9 @@
-package Model.ADTs;
+package Model.Statements;
 
+import Model.ADTs.IDictionary;
 import Model.Exceptions.MyException;
 import Model.Expressions.Expression;
 import Model.ProgramState.ProgramState;
-import Model.Statements.IStatement;
 import Model.Types.BoolType;
 import Model.Values.BoolValue;
 import Model.Values.Value;
@@ -27,7 +27,7 @@ public class WhileStatement implements IStatement {
     @Override
     public ProgramState execute(ProgramState state) throws MyException, IOException {
         IDictionary<String, Value> symbolTable = state.getSymbolTable();
-        Value result = exp.evaluate(symbolTable);
+        Value result = exp.evaluate(symbolTable,state.getHeap());
         if (result.getType().equals(new BoolType())){
             BoolValue downcastedResult = (BoolValue)result;
             if (downcastedResult.getValue()==true){
