@@ -48,7 +48,8 @@ public class Controller {
 
     Map<Integer, Value> safeGarbageCollector(List<Integer> addressesFromSymbolTable, Map<Integer,Value> heap)
     {
-        return heap.entrySet().stream()
+        return heap.entrySet()
+                .stream()
                 .filter(e->addressesFromSymbolTable.contains(e.getKey()))
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
     }
@@ -57,10 +58,11 @@ public class Controller {
         return  Stream.concat(
                 heap.stream()
                         .filter(v-> v instanceof ReferenceValue)
-                        .map(v-> {ReferenceValue v1 = (ReferenceValue)v; return v1.getAddress();})
-                ,symTableValues.stream()
+                        .map(v-> {ReferenceValue v1 = (ReferenceValue)v; return v1.getAddress();}),
+                symTableValues.stream()
                         .filter(v-> v instanceof ReferenceValue)
-                        .map(v-> {ReferenceValue v1 = (ReferenceValue)v; return v1.getAddress();}))
+                        .map(v-> {ReferenceValue v1 = (ReferenceValue)v; return v1.getAddress();})
+                )
                 .collect(Collectors.toList());
     }
 }
