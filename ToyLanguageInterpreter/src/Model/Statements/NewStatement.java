@@ -30,7 +30,7 @@ public class NewStatement implements IStatement{
             Value value = state.getSymbolTable().lookup(var_name);
             if (value instanceof ReferenceValue){
                 Value expressionValue = exp.evaluate(state.getSymbolTable(),state.getHeap());
-                if(expressionValue.getType().equals(((ReferenceValue) value).getLocationType())){
+                if(expressionValue.getType().equals(((ReferenceValue) value).getLocationType())){ // check if location type of value associated to var_name is the same as the expression evaluation type
                     int location = state.getHeap().allocate(expressionValue);
                     state.getSymbolTable().update(var_name,new ReferenceValue(location,expressionValue.getType()));
                 }

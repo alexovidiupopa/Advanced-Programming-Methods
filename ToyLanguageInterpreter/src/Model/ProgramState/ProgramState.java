@@ -1,10 +1,12 @@
 package Model.ProgramState;
 
 import Model.ADTs.*;
+import Model.Exceptions.MyException;
 import Model.Statements.IStatement;
 import Model.Values.Value;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 
 public class ProgramState {
     private IStack<IStatement> executionStack;
@@ -12,6 +14,16 @@ public class ProgramState {
     private IList<Value> output;
     private IDictionary<String, BufferedReader> fileTable;
     private IHeap<Value> heap;
+    private static int id;
+
+    public static int getId() {
+        return id;
+    }
+
+    public static void setId(int id) {
+        ProgramState.id = id;
+    }
+
     public IDictionary<String, BufferedReader> getFileTable() {
         return fileTable;
     }
@@ -27,7 +39,7 @@ public class ProgramState {
 
     @Override
     public String toString() {
-        return "ProgramState:\n" +
+        return "ProgramState with id:" + id + "\n" +
                 "ExecutionStack\n" + executionStack.toString() +"\n" +
                 "SymbolTable\n" + symbolTable.toString() + "\n" +
                 "Output\n" + output.toString()  +
@@ -79,5 +91,15 @@ public class ProgramState {
         this.fileTable = new MyDictionary<String,BufferedReader>();
         this.heap = new MyHeap<>();
         this.executionStack.push(originalProgram);
+    }
+
+    public ProgramState executeOneStep() throws MyException, IOException {
+        if(executionStack.isEmpty())
+            throw new MyException("Stack is empty");
+        IStatement top = executionStack.pop();
+        return top.execute(this);
+    }
+    public Boolean isNotCompleted(){
+        return executionStack.isEmpty()!=true;
     }
 }

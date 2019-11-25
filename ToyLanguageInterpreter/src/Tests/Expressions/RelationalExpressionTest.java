@@ -1,6 +1,4 @@
-package Tests.Expresions;
-
-import static org.junit.jupiter.api.Assertions.*;
+package Tests.Expressions;
 
 class RelationalExpressionTest {
 

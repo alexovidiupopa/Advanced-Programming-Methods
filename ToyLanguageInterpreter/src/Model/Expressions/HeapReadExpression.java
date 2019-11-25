@@ -24,6 +24,7 @@ public class HeapReadExpression implements Expression {
         if (evaluationValue instanceof ReferenceValue){
             //downcast to ref value first
             int address = ((ReferenceValue) evaluationValue).getAddress();
+            //take the value from the heap if it exists
             Value valueFromHeap = heap.get(address);
             if (valueFromHeap!=null){
                 return valueFromHeap;

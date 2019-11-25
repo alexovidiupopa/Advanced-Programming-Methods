@@ -28,9 +28,9 @@ public class HeapWriteStatement implements IStatement {
             Value val = state.getSymbolTable().lookup(this.var_name);
             if (val instanceof ReferenceValue){
                 int address = ((ReferenceValue)val).getAddress();
-                if (state.getHeap().get(address)!=null){
+                if (state.getHeap().get(address)!=null){ // check if there's anything at that address
                     Value evaluationValue = this.exp.evaluate(state.getSymbolTable(),state.getHeap());
-                    if (evaluationValue.getType().equals(((ReferenceValue) val).getLocationType())){
+                    if (evaluationValue.getType().equals(((ReferenceValue) val).getLocationType())){ //check if the types are equal and update the value at that address in the heap
                         state.getHeap().put(address,evaluationValue);
                     }
                     else

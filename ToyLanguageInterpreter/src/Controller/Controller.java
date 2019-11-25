@@ -22,14 +22,6 @@ public class Controller {
         this.repo = repo;
     }
 
-    public ProgramState executeOneStep(ProgramState state) throws MyException, IOException {
-        IStack<IStatement> stack = state.getExecutionStack();
-        if (stack.isEmpty())
-            throw new MyException("Empty execution stack.");
-        IStatement currentStatement = stack.pop();
-        return currentStatement.execute(state);
-    }
-
     public void executeAllStep() throws MyException, IOException {
         ProgramState prog = this.repo.getCurrentProgram();
         this.repo.logProgramStateExecution();
@@ -64,5 +56,9 @@ public class Controller {
                         .map(v-> {ReferenceValue v1 = (ReferenceValue)v; return v1.getAddress();})
                 )
                 .collect(Collectors.toList());
+        /*return symTableValues.stream()
+                .filter(v-> v instanceof ReferenceValue)
+                .map(v-> {ReferenceValue v1 = (ReferenceValue)v; return v1.getAddress();})
+                .collect(Collectors.toList());*/
     }
 }

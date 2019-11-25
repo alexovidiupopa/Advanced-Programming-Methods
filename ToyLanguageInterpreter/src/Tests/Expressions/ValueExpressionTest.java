@@ -1,4 +1,4 @@
-package Tests.Expresions;
+package Tests.Expressions;
 
 import Model.ADTs.IDictionary;
 import Model.ADTs.IHeap;
@@ -11,8 +11,6 @@ import Model.Values.IntValue;
 import Model.Values.Value;
 import com.sun.tools.javac.util.Assert;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class ValueExpressionTest {
 

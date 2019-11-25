@@ -3,9 +3,11 @@ package Repository;
 import Model.ProgramState.ProgramState;
 
 import java.io.IOException;
+import java.util.List;
 
 public interface IRepository {
     public void addProgram(ProgramState progState);
-    public ProgramState getCurrentProgram();
-    public void logProgramStateExecution() throws IOException;
+    public void logProgramStateExecution(ProgramState programState) throws IOException;
+    List<ProgramState> getProgramList();
+    void setProgramList(List<ProgramState> list);
 }

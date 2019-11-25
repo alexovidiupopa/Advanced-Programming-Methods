@@ -24,12 +24,7 @@ public class Repository implements IRepository {
     }
 
     @Override
-    public ProgramState getCurrentProgram() {
-        return this.programStates.get(this.currentIndex);
-    }
-
-    @Override
-    public void logProgramStateExecution() throws IOException {
+    public void logProgramStateExecution(ProgramState progState) throws IOException {
         PrintWriter writer;
         if (first)
         {
@@ -38,7 +33,17 @@ public class Repository implements IRepository {
         }
         else
             writer = new PrintWriter(new BufferedWriter(new FileWriter(this.path,true)));
-        writer.print(this.programStates.get(this.currentIndex));
+        writer.print(progState);
         writer.close();
+    }
+
+    @Override
+    public List<ProgramState> getProgramList() {
+        return programStates;
+    }
+
+    @Override
+    public void setProgramList(List<ProgramState> list) {
+        programStates=list;
     }
 }
