@@ -14,14 +14,14 @@ public class ProgramState {
     private IList<Value> output;
     private IDictionary<String, BufferedReader> fileTable;
     private IHeap<Value> heap;
-    private static int id;
+    private Integer id;
 
-    public static int getId() {
+    public  Integer getId() {
         return id;
     }
 
-    public static void setId(int id) {
-        ProgramState.id = id;
+    public  void setId(Integer id) {
+        this.id = id;
     }
 
     public IDictionary<String, BufferedReader> getFileTable() {
@@ -75,13 +75,15 @@ public class ProgramState {
         this.output = output;
     }
 
-    public ProgramState(IStack<IStatement> executionStack, IDictionary<String, Value> symbolTable, IList<Value> output, IDictionary<String,BufferedReader> fileTable,IStatement originalProgram) {
+    public ProgramState(IStack<IStatement> executionStack, IDictionary<String, Value> symbolTable, IHeap<Value> heap, IList<Value> output, IDictionary<String,BufferedReader> fileTable,IStatement originalProgram,Integer id) {
         this.executionStack = executionStack;
         this.symbolTable = symbolTable;
+        this.heap = heap;
         this.output = output;
         this.fileTable = fileTable;
         //this.originalProgram = clone((Object)originalProgram);
         this.executionStack.push(originalProgram);
+        this.id = id;
     }
 
     public ProgramState(IStatement originalProgram){
@@ -90,6 +92,7 @@ public class ProgramState {
         this.output = new MyList<Value>();
         this.fileTable = new MyDictionary<String,BufferedReader>();
         this.heap = new MyHeap<>();
+        this.id = 1;
         this.executionStack.push(originalProgram);
     }
 
@@ -102,4 +105,5 @@ public class ProgramState {
     public Boolean isNotCompleted(){
         return executionStack.isEmpty()!=true;
     }
+
 }

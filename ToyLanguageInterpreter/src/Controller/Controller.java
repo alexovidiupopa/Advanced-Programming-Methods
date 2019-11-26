@@ -13,32 +13,69 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Controller {
     private IRepository repo;
+    private ExecutorService executor;
     public Controller(IRepository repo) {
         this.repo = repo;
     }
 
-    public void executeAllStep() throws MyException, IOException {
-        ProgramState prog = this.repo.getCurrentProgram();
-        this.repo.logProgramStateExecution();
-        while(!prog.getExecutionStack().isEmpty()){
-            this.executeOneStep(prog);
-            prog.getHeap().setContent(safeGarbageCollector
-                    (getAddrFromSymTable(prog.getSymbolTable().getContent().values(),
-                            prog.getHeap().getContent().values()),prog.getHeap().getContent()));
-            this.repo.logProgramStateExecution();
+    public void oneStepForAll(List<ProgramState> programStates) throws InterruptedException {
+        programStates.forEach(p-> {
+            try {
+                repo.logProgramStateExecution(p);
+            } catch (IOException e) {
             }
+        });
+        List<Callable<ProgramState>> callableList = programStates.stream()
+                .map((ProgramState p) -> (Callable<ProgramState>)(()->{return p.executeOneStep();}))
+                .collect(Collectors.toList());
+        List<ProgramState> newProgramStates = executor.invokeAll(callableList)
+                                                .stream()
+                                                        .map(future-> {
+                                                            try {
+                                                                return future.get();
+                                                            } catch (InterruptedException | ExecutionException e) {
+                                                                return null;
+                                                            }
+                                                        })
+                                                        .filter(e->e!=null)
+                                                .collect(Collectors.toList());
+        programStates.addAll(newProgramStates);
+        programStates.forEach(prog -> {
+            try {
+                repo.logProgramStateExecution(prog);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        repo.setProgramList(programStates);
+    }
+
+    public void executeAllStep() throws InterruptedException, IOException {
+        executor = Executors.newFixedThreadPool(2);
+        List<ProgramState> programStates = removeCompletedPrograms(repo.getProgramList());
+        while(programStates.size()>0){
+            programStates.forEach(
+                    p-> {p.getHeap().setContent(unsafeGarbageCollector(getAddrFromSymTable(p.getSymbolTable().getContent().values(),p.getHeap().getContent().values()),p.getHeap().getContent()));}
+            );
+            oneStepForAll(programStates);
+            programStates = removeCompletedPrograms(repo.getProgramList());
+        }
+        executor.shutdownNow();
+        programStates = removeCompletedPrograms(repo.getProgramList());
+        repo.setProgramList(programStates);
     }
 
     public IRepository getRepo(){return this.repo;}
 
     public void addProgram(ProgramState progState){this.repo.addProgram(progState);}
 
-    Map<Integer, Value> safeGarbageCollector(List<Integer> addressesFromSymbolTable, Map<Integer,Value> heap)
+    Map<Integer, Value> unsafeGarbageCollector(List<Integer> addressesFromSymbolTable, Map<Integer,Value> heap)
     {
         return heap.entrySet()
                 .stream()
@@ -47,7 +84,7 @@ public class Controller {
     }
 
     List<Integer> getAddrFromSymTable(Collection<Value> symTableValues, Collection<Value> heap){
-        return  Stream.concat(
+        /*return  Stream.concat(
                 heap.stream()
                         .filter(v-> v instanceof ReferenceValue)
                         .map(v-> {ReferenceValue v1 = (ReferenceValue)v; return v1.getAddress();}),
@@ -55,10 +92,17 @@ public class Controller {
                         .filter(v-> v instanceof ReferenceValue)
                         .map(v-> {ReferenceValue v1 = (ReferenceValue)v; return v1.getAddress();})
                 )
-                .collect(Collectors.toList());
-        /*return symTableValues.stream()
+                .collect(Collectors.toList());*/
+        return symTableValues.stream()
                 .filter(v-> v instanceof ReferenceValue)
                 .map(v-> {ReferenceValue v1 = (ReferenceValue)v; return v1.getAddress();})
-                .collect(Collectors.toList());*/
+                .collect(Collectors.toList());
+
+    }
+
+    public List<ProgramState> removeCompletedPrograms(List<ProgramState> inProgress){
+        return inProgress.stream()
+                .filter(e->e.isNotCompleted())
+                .collect(Collectors.toList());
     }
 }

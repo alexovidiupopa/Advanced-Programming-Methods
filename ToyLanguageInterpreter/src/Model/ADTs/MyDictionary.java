@@ -50,4 +50,13 @@ public class MyDictionary<K,V> implements IDictionary {
     public Map getContent() {
         return dictionary;
     }
+
+    @Override
+    public IDictionary<K,V> clone() {
+        IDictionary<K,V> copy = new MyDictionary<>();
+        for (K k : dictionary.keySet()) {
+            copy.update(k,dictionary.get(k));
+        }
+        return copy;
+    }
 }

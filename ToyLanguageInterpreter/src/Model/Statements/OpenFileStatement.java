@@ -37,6 +37,6 @@ public class OpenFileStatement implements IStatement {
         }
         else
             throw new MyException("Expression doesn't evaluate to a string.");
-        return state;
+        return null;
     }
 }

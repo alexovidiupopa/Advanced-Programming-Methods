@@ -12,7 +12,7 @@ public interface IDictionary<K,V> {
     void update(K key, V value);
     void delete(K key) throws MyException;
     Map<K,V> getContent();
-
+    IDictionary<K,V> clone();
     @Override
     String toString();
 }

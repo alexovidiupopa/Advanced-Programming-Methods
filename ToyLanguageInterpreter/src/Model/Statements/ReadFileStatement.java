@@ -56,6 +56,6 @@ public class ReadFileStatement implements IStatement {
         }
         else
             throw new MyException("Variable name is not defined in the symbol table");
-        return state;
+        return null;
     }
 }

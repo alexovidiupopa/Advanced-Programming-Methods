@@ -37,6 +37,6 @@ public class WhileStatement implements IStatement {
         }
         else
             throw new MyException("Condition exp is not a boolean.");
-        return state;
+        return null;
     }
 }

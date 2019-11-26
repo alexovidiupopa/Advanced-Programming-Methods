@@ -22,7 +22,7 @@ public class VariableDeclarationStatement implements IStatement{
             throw new MyException("Variable already declared");
         else
             table.update(this.name, this.type.defaultValue());
-        return state;
+        return null;
     }
 
     @Override

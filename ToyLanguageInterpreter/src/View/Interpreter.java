@@ -62,6 +62,15 @@ public class Interpreter {
                                 new NewStatement("a",new VariableExpression("v")),new CompoundStatement(
                                 new HeapWriteStatement("v",new ValueExpression(new IntValue(30))),
                                 new PrintStatement(new ArithmeticExpression('+' ,new HeapReadExpression(new HeapReadExpression( new VariableExpression("a"))),new ValueExpression(new IntValue(5))))))))));
+        IStatement forked = new CompoundStatement(new HeapWriteStatement("a",new ValueExpression(new IntValue(30))),
+                                                  new CompoundStatement(new AssignmentStatement("v",new ValueExpression(new IntValue(32))),
+                                                                        new CompoundStatement(new PrintStatement(new VariableExpression("v")),new PrintStatement(new HeapReadExpression(new VariableExpression("a"))))));
+        IStatement ex8 = new CompoundStatement(new VariableDeclarationStatement("v", new IntType()),
+                                               new CompoundStatement(new VariableDeclarationStatement("a",new ReferenceType(new IntType())),
+                                                                     new CompoundStatement(new AssignmentStatement("v",new ValueExpression(new IntValue(10))),
+                                                                                            new CompoundStatement(new NewStatement("a",new ValueExpression(new IntValue(22))),
+                                                                                                    new CompoundStatement(new ForkStatement(forked),new CompoundStatement(new PrintStatement(new VariableExpression("v")),new PrintStatement(new HeapReadExpression(new VariableExpression("a"))))))
+                                                                )));
 
         ProgramState prog1 = new ProgramState(ex1);
         IRepository repo1 = new Repository("log1.txt");
@@ -98,6 +107,10 @@ public class Interpreter {
         Controller controller7 = new Controller(repo7);
         controller7.addProgram(prog7);
 
+        ProgramState prog8 = new ProgramState(ex8);
+        IRepository repo8 = new Repository("log8.txt");
+        Controller controller8 = new Controller(repo8);
+        controller8.addProgram(prog8);
 
         TextMenu menu = new TextMenu();
         menu.addCommand(new ExitCommand("0","exit"));
@@ -108,6 +121,7 @@ public class Interpreter {
         menu.addCommand(new RunExample("5",ex5.toString(),controller5));
         menu.addCommand(new RunExample("6",ex6.toString(),controller6));
         menu.addCommand(new RunExample("7",ex7.toString(),controller7));
+        menu.addCommand(new RunExample("8",ex8.toString(),controller8));
         menu.show();
     }
 }

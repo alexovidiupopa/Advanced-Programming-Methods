@@ -17,10 +17,8 @@ public class RunExample extends Command {
 
         try {
             this.controller.executeAllStep();
-        } catch (MyException e) {
-            System.out.println(e.getMessage());
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
+        } catch (InterruptedException | IOException e) {
+            System.out.println(e.getMessage());;
         }
 
     }

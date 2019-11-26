@@ -24,7 +24,7 @@ public class IfStatement implements IStatement {
             this.ifStatement.execute(state);
         else
             this.elseStatement.execute(state);
-        return state;
+        return null;
     }
 
     @Override

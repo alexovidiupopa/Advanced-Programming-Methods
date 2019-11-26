@@ -18,7 +18,7 @@ public class PrintStatement implements IStatement {
     public ProgramState execute(ProgramState state) throws MyException {
         IList<Value> output = state.getOutput();
         output.add(expression.evaluate(state.getSymbolTable(),state.getHeap()));
-        return state;
+        return null;
     }
 
     public String  toString(){

@@ -40,6 +40,6 @@ public class NewStatement implements IStatement{
                 throw new MyException("Value isn't of type ReferenceType");
         }
         else throw new MyException("Variable not defined.");
-        return state;
+        return null;
     }
 }

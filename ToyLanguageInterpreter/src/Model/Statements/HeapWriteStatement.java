@@ -44,6 +44,6 @@ public class HeapWriteStatement implements IStatement {
         }
         else
             throw new MyException("Variable not defined.");
-        return state;
+        return null;
     }
 }
