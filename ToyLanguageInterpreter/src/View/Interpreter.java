@@ -71,6 +71,12 @@ public class Interpreter {
                                                                                             new CompoundStatement(new NewStatement("a",new ValueExpression(new IntValue(22))),
                                                                                                     new CompoundStatement(new ForkStatement(forked),new CompoundStatement(new PrintStatement(new VariableExpression("v")),new PrintStatement(new HeapReadExpression(new VariableExpression("a"))))))
                                                                 )));
+        IStatement ex9 = new CompoundStatement(new VariableDeclarationStatement("v", new IntType()),
+                new CompoundStatement(new VariableDeclarationStatement("a",new ReferenceType(new IntType())),
+                        new CompoundStatement(new AssignmentStatement("v",new ValueExpression(new StringValue("aa"))),
+                                new CompoundStatement(new NewStatement("a",new ValueExpression(new IntValue(22))),
+                                        new CompoundStatement(new ForkStatement(forked),new CompoundStatement(new PrintStatement(new VariableExpression("v")),new PrintStatement(new HeapReadExpression(new VariableExpression("a"))))))
+                        )));
 
         ProgramState prog1 = new ProgramState(ex1);
         IRepository repo1 = new Repository("log1.txt");

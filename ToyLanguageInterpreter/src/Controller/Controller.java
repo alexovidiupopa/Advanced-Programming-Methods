@@ -24,27 +24,31 @@ public class Controller {
         this.repo = repo;
     }
 
-    public void oneStepForAll(List<ProgramState> programStates) throws InterruptedException {
+    public void oneStepForAll(List<ProgramState> programStates) throws InterruptedException, MyException {
         programStates.forEach(p-> {
             try {
                 repo.logProgramStateExecution(p);
             } catch (IOException e) {
+
             }
         });
         List<Callable<ProgramState>> callableList = programStates.stream()
-                .map((ProgramState p) -> (Callable<ProgramState>)(()->{return p.executeOneStep();}))
+                .map((ProgramState p) -> (Callable<ProgramState>)(()-> p.executeOneStep()))
                 .collect(Collectors.toList());
         List<ProgramState> newProgramStates = executor.invokeAll(callableList)
-                                                .stream()
-                                                        .map(future-> {
-                                                            try {
-                                                                return future.get();
-                                                            } catch (InterruptedException | ExecutionException e) {
-                                                                return null;
-                                                            }
-                                                        })
-                                                        .filter(e->e!=null)
-                                                .collect(Collectors.toList());
+                .stream()
+                .map(future -> {
+                    try {
+                        return future.get();
+                    } catch (InterruptedException | ExecutionException e) {
+                        System.out.println(e.getMessage());
+                        return null;
+                    }
+                })
+                .filter(e -> e != null)
+                .collect(Collectors.toList());
+
+
         programStates.addAll(newProgramStates);
         programStates.forEach(prog -> {
             try {
@@ -56,13 +60,11 @@ public class Controller {
         repo.setProgramList(programStates);
     }
 
-    public void executeAllStep() throws InterruptedException, IOException {
+    public void executeAllStep() throws InterruptedException, MyException {
         executor = Executors.newFixedThreadPool(2);
         List<ProgramState> programStates = removeCompletedPrograms(repo.getProgramList());
         while(programStates.size()>0){
-            programStates.forEach(
-                    p-> {p.getHeap().setContent(unsafeGarbageCollector(getAddrFromSymTable(p.getSymbolTable().getContent().values(),p.getHeap().getContent().values()),p.getHeap().getContent()));}
-            );
+            callGarbageCollector(programStates);
             oneStepForAll(programStates);
             programStates = removeCompletedPrograms(repo.getProgramList());
         }
@@ -71,11 +73,17 @@ public class Controller {
         repo.setProgramList(programStates);
     }
 
+
+    public void callGarbageCollector(List<ProgramState> programStates){
+        programStates.forEach(
+                p-> {p.getHeap().setContent(safeGarbageCollector(getAddrFromSymTable(p.getSymbolTable().getContent().values(),p.getHeap().getContent().values()),p.getHeap().getContent()));}
+        );
+    }
     public IRepository getRepo(){return this.repo;}
 
     public void addProgram(ProgramState progState){this.repo.addProgram(progState);}
 
-    Map<Integer, Value> unsafeGarbageCollector(List<Integer> addressesFromSymbolTable, Map<Integer,Value> heap)
+    Map<Integer, Value> safeGarbageCollector(List<Integer> addressesFromSymbolTable, Map<Integer,Value> heap)
     {
         return heap.entrySet()
                 .stream()
@@ -84,7 +92,7 @@ public class Controller {
     }
 
     List<Integer> getAddrFromSymTable(Collection<Value> symTableValues, Collection<Value> heap){
-        /*return  Stream.concat(
+        return  Stream.concat(
                 heap.stream()
                         .filter(v-> v instanceof ReferenceValue)
                         .map(v-> {ReferenceValue v1 = (ReferenceValue)v; return v1.getAddress();}),
@@ -92,11 +100,11 @@ public class Controller {
                         .filter(v-> v instanceof ReferenceValue)
                         .map(v-> {ReferenceValue v1 = (ReferenceValue)v; return v1.getAddress();})
                 )
-                .collect(Collectors.toList());*/
-        return symTableValues.stream()
+                .collect(Collectors.toList());
+        /*return symTableValues.stream()
                 .filter(v-> v instanceof ReferenceValue)
                 .map(v-> {ReferenceValue v1 = (ReferenceValue)v; return v1.getAddress();})
-                .collect(Collectors.toList());
+                .collect(Collectors.toList());*/
 
     }
 
