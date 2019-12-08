@@ -10,4 +10,6 @@ public interface IRepository {
     public void logProgramStateExecution(ProgramState programState) throws IOException;
     List<ProgramState> getProgramList();
     void setProgramList(List<ProgramState> list);
+
+    ProgramState getProgramWithId(int id);
 }

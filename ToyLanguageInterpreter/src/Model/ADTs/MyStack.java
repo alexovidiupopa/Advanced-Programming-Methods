@@ -2,6 +2,7 @@ package Model.ADTs;
 
 import Model.Exceptions.MyException;
 
+import java.util.List;
 import java.util.Stack;
 
 public class MyStack<T> implements IStack {
@@ -34,5 +35,10 @@ public class MyStack<T> implements IStack {
     @Override
     public boolean isEmpty() {
         return stack.empty();
+    }
+
+    @Override
+    public List getValues() {
+        return stack.subList(0,stack.size());
     }
 }

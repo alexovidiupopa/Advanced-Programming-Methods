@@ -24,7 +24,24 @@ public class Controller {
         this.repo = repo;
     }
 
-    public void oneStepForAll(List<ProgramState> programStates) throws InterruptedException, MyException {
+    public void executeOneStep() throws MyException {
+        executor = Executors.newFixedThreadPool(2);
+        repo.setProgramList(removeCompletedPrograms(repo.getProgramList()));
+        List<ProgramState> programStates = repo.getProgramList();
+        if(programStates.size() > 0)
+        {
+            try {
+                oneStepForAll(repo.getProgramList());
+            } catch (InterruptedException e) {
+                System.out.println();
+            }
+            repo.setProgramList(removeCompletedPrograms(repo.getProgramList()));
+            executor.shutdownNow();
+            callGarbageCollector(programStates);
+        }
+    }
+
+    public void oneStepForAll(List<ProgramState> programStates) throws InterruptedException {
         programStates.forEach(p-> {
             try {
                 repo.logProgramStateExecution(p);
@@ -41,7 +58,6 @@ public class Controller {
                     try {
                         return future.get();
                     } catch (InterruptedException | ExecutionException e) {
-                        System.out.println(e.getMessage());
                         return null;
                     }
                 })
@@ -113,4 +129,6 @@ public class Controller {
                 .filter(e->e.isNotCompleted())
                 .collect(Collectors.toList());
     }
+
+
 }

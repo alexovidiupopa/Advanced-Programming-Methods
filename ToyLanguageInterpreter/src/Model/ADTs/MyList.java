@@ -46,4 +46,9 @@ public class MyList<T> implements IList{
     public int size() {
         return this.list.size();
     }
+
+    @Override
+    public List getContent() {
+        return list;
+    }
 }
