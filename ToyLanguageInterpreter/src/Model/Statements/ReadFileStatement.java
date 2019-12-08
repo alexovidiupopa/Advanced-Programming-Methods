@@ -1,10 +1,13 @@
 package Model.Statements;
 
+import Model.ADTs.IDictionary;
 import Model.Exceptions.MyException;
 import Model.Expressions.Expression;
 import Model.ProgramState.ProgramState;
 import Model.Types.IntType;
+import Model.Types.ReferenceType;
 import Model.Types.StringType;
+import Model.Types.Type;
 import Model.Values.IntValue;
 import Model.Values.StringValue;
 import Model.Values.Value;
@@ -57,5 +60,19 @@ public class ReadFileStatement implements IStatement {
         else
             throw new MyException("Variable name is not defined in the symbol table");
         return null;
+    }
+
+    @Override
+    public IDictionary<String, Type> typecheck(IDictionary<String, Type> typeEnv) throws MyException {
+        Type typeVar = typeEnv.lookup(variableName);
+        Type typeExp = expression.typecheck(typeEnv);
+        if(typeVar.equals(new IntType()))
+            if (typeExp.equals(new StringType())){
+                return typeEnv;
+            }
+            else
+                throw new MyException("Read file statement - exp not a string");
+        else
+            throw new MyException("Read file statement - variable not of type int");
     }
 }

@@ -3,6 +3,8 @@ package Model.Expressions;
 import Model.ADTs.IDictionary;
 import Model.ADTs.IHeap;
 import Model.Exceptions.MyException;
+import Model.Types.ReferenceType;
+import Model.Types.Type;
 import Model.Values.ReferenceValue;
 import Model.Values.Value;
 
@@ -35,5 +37,15 @@ public class HeapReadExpression implements Expression {
         }
         else
             throw new MyException("Value is not of type reference value.");
+    }
+
+    @Override
+    public Type typecheck(IDictionary<String, Type> typeEnv) throws MyException {
+        Type typ = exp.typecheck(typeEnv);
+        if (typ instanceof ReferenceType){
+            return ((ReferenceType)typ).getInner();
+        }
+        else
+            throw new MyException("Read Heap argument not Ref Type.");
     }
 }

@@ -3,6 +3,7 @@ package Model.Expressions;
 import Model.ADTs.IDictionary;
 import Model.ADTs.IHeap;
 import Model.Exceptions.MyException;
+import Model.Types.Type;
 import Model.Values.Value;
 
 public class ValueExpression implements Expression {
@@ -20,5 +21,10 @@ public class ValueExpression implements Expression {
     @Override
     public Value evaluate(IDictionary<String, Value> table, IHeap<Value> heap) throws MyException {
         return value;
+    }
+
+    @Override
+    public Type typecheck(IDictionary<String, Type> typeEnv) throws MyException {
+        return value.getType();
     }
 }

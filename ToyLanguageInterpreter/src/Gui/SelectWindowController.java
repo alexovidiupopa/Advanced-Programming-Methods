@@ -1,13 +1,12 @@
 package Gui;
 
 import Controller.Controller;
+import Model.ADTs.MyDictionary;
+import Model.Exceptions.MyException;
 import Model.Expressions.*;
 import Model.ProgramState.ProgramState;
 import Model.Statements.*;
-import Model.Types.BoolType;
-import Model.Types.IntType;
-import Model.Types.ReferenceType;
-import Model.Types.StringType;
+import Model.Types.*;
 import Model.Values.BoolValue;
 import Model.Values.IntValue;
 import Model.Values.StringValue;
@@ -17,6 +16,7 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import java.net.URL;
@@ -101,6 +101,14 @@ public class SelectWindowController implements Initializable {
                                 new CompoundStatement(new NewStatement("a",new ValueExpression(new IntValue(22))),
                                         new CompoundStatement(new ForkStatement(forked),new CompoundStatement(new PrintStatement(new VariableExpression("v")),new PrintStatement(new HeapReadExpression(new VariableExpression("a"))))))
                         )));
+        IStatement ex9 = new CompoundStatement(new VariableDeclarationStatement("v", new IntType()),
+                new CompoundStatement(new VariableDeclarationStatement("a",new ReferenceType(new IntType())),
+                        new CompoundStatement(new AssignmentStatement("v",new ValueExpression(new StringValue("aa"))),
+                                new CompoundStatement(new NewStatement("a",new ValueExpression(new IntValue(22))),
+                                        new CompoundStatement(new ForkStatement(forked),new CompoundStatement(new PrintStatement(new VariableExpression("v")),new PrintStatement(new HeapReadExpression(new VariableExpression("a"))))))
+                        )));
+        IStatement ex10= new CompoundStatement(new VariableDeclarationStatement("v",new BoolType()), new CompoundStatement(new AssignmentStatement("v",new ValueExpression(new IntValue(2))), new PrintStatement(new VariableExpression("v"))));
+        IStatement ex11= new CompoundStatement(new VariableDeclarationStatement("v",new IntType()), new CompoundStatement(new AssignmentStatement("v",new ValueExpression(new BoolValue(true))), new PrintStatement(new VariableExpression("v"))));
         list.add(ex1);
         list.add(ex2);
         list.add(ex3);
@@ -109,6 +117,9 @@ public class SelectWindowController implements Initializable {
         list.add(ex6);
         list.add(ex7);
         list.add(ex8);
+        list.add(ex9);
+        list.add(ex10);
+        list.add(ex11);
         return list;
     }
 
@@ -124,7 +135,14 @@ public class SelectWindowController implements Initializable {
             IRepository repository = new Repository("log" + index + ".txt");
             Controller controller = new Controller(repository);
             controller.addProgram(programState);
-            mainWindowController.setController(controller);
+            try {
+                selectedProgram.typecheck(new MyDictionary<String, Type>());
+                mainWindowController.setController(controller);
+            } catch (MyException e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR,e.getMessage());
+                alert.show();
+            }
+
         });
     }
 

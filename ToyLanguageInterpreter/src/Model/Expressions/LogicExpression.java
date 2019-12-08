@@ -4,6 +4,8 @@ import Model.ADTs.IDictionary;
 import Model.ADTs.IHeap;
 import Model.Exceptions.MyException;
 import Model.Types.BoolType;
+import Model.Types.IntType;
+import Model.Types.Type;
 import Model.Values.BoolValue;
 import Model.Values.Value;
 
@@ -36,6 +38,18 @@ public class LogicExpression implements Expression {
         }
         else
             throw new MyException("First second operand is not a bool.");
+    }
+
+    @Override
+    public Type typecheck(IDictionary<String, Type> typeEnv) throws MyException {
+        Type typ1 = exp1.typecheck(typeEnv), typ2 = exp2.typecheck(typeEnv);
+        if (exp1.equals(new BoolType()))
+            if (exp2.equals(new BoolType()))
+                return new BoolType();
+            else
+                throw new MyException("Second operand is not an integer");
+        else
+            throw new MyException("Second operand is not an integer");
     }
 
     @Override

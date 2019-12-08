@@ -1,9 +1,11 @@
 package Model.Statements;
 
+import Model.ADTs.IDictionary;
 import Model.Exceptions.MyException;
 import Model.Expressions.Expression;
 import Model.ProgramState.ProgramState;
 import Model.Types.ReferenceType;
+import Model.Types.Type;
 import Model.Values.ReferenceValue;
 import Model.Values.Value;
 
@@ -41,5 +43,15 @@ public class NewStatement implements IStatement{
         }
         else throw new MyException("Variable not defined.");
         return null;
+    }
+
+    @Override
+    public IDictionary<String, Type> typecheck(IDictionary<String, Type> typeEnv) throws MyException {
+        Type typeVar = typeEnv.lookup(var_name);
+        Type typeExp = exp.typecheck(typeEnv);
+        if(typeVar.equals(new ReferenceType(typeExp)))
+            return typeEnv;
+        else
+            throw new MyException("New Statement - different types");
     }
 }

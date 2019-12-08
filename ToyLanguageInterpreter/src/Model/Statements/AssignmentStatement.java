@@ -4,6 +4,7 @@ import Model.ADTs.IDictionary;
 import Model.Exceptions.MyException;
 import Model.Expressions.Expression;
 import Model.ProgramState.ProgramState;
+import Model.Types.Type;
 import Model.Values.Value;
 
 public class AssignmentStatement implements IStatement {
@@ -32,5 +33,15 @@ public class AssignmentStatement implements IStatement {
         else
             throw new MyException("Variable id is not declared.");
         return null;
+    }
+
+    @Override
+    public IDictionary<String, Type> typecheck(IDictionary<String, Type> typeEnv) throws MyException {
+        Type typeVar = typeEnv.lookup(id);
+        Type typeExp = exp.typecheck(typeEnv);
+        if (typeVar.equals(typeExp))
+            return typeEnv;
+        else
+            throw new MyException("Assignment Statement: right hand side type != left hand side type");
     }
 }

@@ -10,7 +10,7 @@ public class ReferenceType implements Type {
         this.inner = inner;
     }
 
-    Type getInner(){return this.inner;}
+    public Type getInner(){return this.inner;}
     @Override
     public Value defaultValue() {
         return new ReferenceValue(0,this.inner);

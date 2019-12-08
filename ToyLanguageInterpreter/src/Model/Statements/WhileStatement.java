@@ -5,6 +5,7 @@ import Model.Exceptions.MyException;
 import Model.Expressions.Expression;
 import Model.ProgramState.ProgramState;
 import Model.Types.BoolType;
+import Model.Types.Type;
 import Model.Values.BoolValue;
 import Model.Values.Value;
 
@@ -38,5 +39,14 @@ public class WhileStatement implements IStatement {
         else
             throw new MyException("Condition exp is not a boolean.");
         return null;
+    }
+
+    @Override
+    public IDictionary<String, Type> typecheck(IDictionary<String, Type> typeEnv) throws MyException {
+        Type type = exp.typecheck(typeEnv);
+        if (type.equals(new BoolType()))
+            return typeEnv;
+        else
+            throw new MyException("While statement - condition expression is not boolean");
     }
 }
