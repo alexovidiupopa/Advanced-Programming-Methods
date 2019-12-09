@@ -34,10 +34,9 @@ public class IfStatement implements IStatement {
     public IDictionary<String, Type> typecheck(IDictionary<String, Type> typeEnv) throws MyException {
         Type typeExp = expression.typecheck(typeEnv);
         if (typeExp.equals(new BoolType())){
-            IDictionary<String, Type> ifEnv, elseEnv;
-            ifEnv = ifStatement.typecheck(typeEnv);
-            elseEnv = elseStatement.typecheck(typeEnv);
-            return typeEnv;
+            ifStatement.typecheck(typeEnv);
+            elseStatement.typecheck(typeEnv);
+            return typeEnv.clone();
         }
         else
             throw new MyException("IF condition is not boolean");

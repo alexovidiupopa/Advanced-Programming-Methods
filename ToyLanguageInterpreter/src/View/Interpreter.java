@@ -1,6 +1,7 @@
 package View;
 
 import Controller.Controller;
+import Model.ADTs.IDictionary;
 import Model.ADTs.MyDictionary;
 import Model.Exceptions.MyException;
 import Model.Statements.WhileStatement;
@@ -11,6 +12,7 @@ import Model.Types.*;
 import Model.Values.BoolValue;
 import Model.Values.IntValue;
 import Model.Values.StringValue;
+import Model.Values.Value;
 import Repository.IRepository;
 import Repository.Repository;
 
@@ -78,6 +80,7 @@ public class Interpreter {
                         )));
         IStatement ex10= new CompoundStatement(new VariableDeclarationStatement("v",new BoolType()), new CompoundStatement(new AssignmentStatement("v",new ValueExpression(new IntValue(2))), new PrintStatement(new VariableExpression("v"))));
         IStatement ex11= new CompoundStatement(new VariableDeclarationStatement("v",new IntType()), new CompoundStatement(new AssignmentStatement("v",new ValueExpression(new BoolValue(true))), new PrintStatement(new VariableExpression("v"))));
+
         TextMenu menu = new TextMenu();
         menu.addCommand(new ExitCommand("0","exit"));
         ProgramState prog1 = new ProgramState(ex1);
@@ -201,5 +204,8 @@ public class Interpreter {
             System.out.println(e);
         }
         menu.show();
+
+
+
     }
 }

@@ -32,7 +32,8 @@ public class ForkStatement implements IStatement {
 
     @Override
     public IDictionary<String, Type> typecheck(IDictionary<String, Type> typeEnv) throws MyException {
-        statement.typecheck(typeEnv);
+        //IDictionary<String, Type> newEnv = typeEnv.clone();
+        statement.typecheck(typeEnv.clone());
         return typeEnv;
     }
 

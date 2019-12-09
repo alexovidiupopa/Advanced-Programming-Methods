@@ -27,9 +27,8 @@ public class VariableDeclarationStatement implements IStatement{
 
     @Override
     public IDictionary<String, Type> typecheck(IDictionary<String, Type> typeEnv) throws MyException {
-        IDictionary<String,Type> envClone = typeEnv.clone();
-        envClone.update(name,type);
-        return envClone;
+        typeEnv.update(name,type);
+        return typeEnv;
     }
 
     @Override

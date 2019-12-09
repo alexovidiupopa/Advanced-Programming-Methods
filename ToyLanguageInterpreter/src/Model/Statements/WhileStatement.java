@@ -43,7 +43,8 @@ public class WhileStatement implements IStatement {
 
     @Override
     public IDictionary<String, Type> typecheck(IDictionary<String, Type> typeEnv) throws MyException {
-        Type type = exp.typecheck(typeEnv);
+        IDictionary<String, Type> newEnv = typeEnv.clone();
+        Type type = exp.typecheck(newEnv);
         if (type.equals(new BoolType()))
             return typeEnv;
         else
