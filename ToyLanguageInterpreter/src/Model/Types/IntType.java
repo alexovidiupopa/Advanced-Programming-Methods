@@ -13,6 +13,11 @@ public class IntType implements Type {
        return "int ";
    }
     public IntValue defaultValue(){return new IntValue(0);}
+
+    @Override
+    public Type clone() {
+        return new IntType();
+    }
 }
 
 

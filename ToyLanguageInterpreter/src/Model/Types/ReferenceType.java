@@ -16,6 +16,11 @@ public class ReferenceType implements Type {
         return new ReferenceValue(0,this.inner);
     }
 
+    @Override
+    public Type clone() {
+        return new ReferenceType(inner.clone());
+    }
+
     public boolean equals(Object other){
         if (other instanceof ReferenceType)
             return this.inner.equals(((ReferenceType) other).getInner());

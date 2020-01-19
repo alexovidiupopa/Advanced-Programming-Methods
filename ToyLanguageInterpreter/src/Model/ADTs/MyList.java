@@ -13,12 +13,12 @@ public class MyList<T> implements IList{
     }
 
     @Override
-    public void add(Object item) {
+    public synchronized void add(Object item) {
         this.list.add((T) item);
     }
 
     @Override
-    public void remove(Object item) throws MyException {
+    public synchronized void remove(Object item) throws MyException {
         if (!this.list.contains((T)item))
             throw new MyException("Object doesn't exist!");
         this.list.remove((T)item);

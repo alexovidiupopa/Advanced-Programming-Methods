@@ -15,7 +15,7 @@ public class MyHeap<T> implements IHeap<T> {
     }
 
     @Override
-    public int allocate(Object val) {
+    public synchronized int allocate(Object val) {
          this.memory++;
          this.map.put(this.memory,(T)val);
          return this.memory;
@@ -27,12 +27,12 @@ public class MyHeap<T> implements IHeap<T> {
     }
 
     @Override
-    public void put(int addr, Object val) {
+    public synchronized void put(int addr, Object val) {
         this.map.put(addr,(T)val);
     }
 
     @Override
-    public T deallocate(int addr) {
+    public synchronized T deallocate(int addr) {
         return this.map.remove(addr);
     }
 

@@ -25,4 +25,9 @@ public class ReferenceValue implements Value {
     public Type getType() {
         return new ReferenceType(locationType);
     }
+
+    @Override
+    public Value clone() {
+        return new ReferenceValue(address,locationType);
+    }
 }

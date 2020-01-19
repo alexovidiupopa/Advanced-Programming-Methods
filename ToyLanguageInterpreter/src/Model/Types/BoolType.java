@@ -13,4 +13,9 @@ public class BoolType implements Type {
         return "bool ";
     }
     public BoolValue defaultValue(){return new BoolValue(false);}
+
+    @Override
+    public Type clone() {
+        return new BoolType();
+    }
 }

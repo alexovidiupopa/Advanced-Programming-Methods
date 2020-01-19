@@ -17,4 +17,9 @@ public class BoolValue implements Value {
     public Type getType(){
         return new BoolType();
     }
+
+    @Override
+    public Value clone() {
+        return new BoolValue(val);
+    }
 }
