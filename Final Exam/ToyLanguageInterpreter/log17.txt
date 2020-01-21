@@ -1,0 +1,1748 @@
+ProgramState with id:1
+ExecutionStack
+{(int v;for(v=0;v<10;v=v+1)print(v))|}
+Symbol table stack
+{{}|}
+Output
+{}
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{for(v=0;v<10;v=v+1)print(v)|int v|}
+Symbol table stack
+{{}|}
+Output
+{}
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{for(v=0;v<10;v=v+1)print(v)|int v|}
+Symbol table stack
+{{}|}
+Output
+{}
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{for(v=0;v<10;v=v+1)print(v)|}
+Symbol table stack
+{{v -> 0;}|}
+Output
+{}
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{for(v=0;v<10;v=v+1)print(v)|}
+Symbol table stack
+{{v -> 0;}|}
+Output
+{}
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(v=0;(while(v<10)(print(v);v=v+1)))|}
+Symbol table stack
+{{v -> 0;}|}
+Output
+{}
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(v=0;(while(v<10)(print(v);v=v+1)))|}
+Symbol table stack
+{{v -> 0;}|}
+Output
+{}
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|v=0|}
+Symbol table stack
+{{v -> 0;}|}
+Output
+{}
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|v=0|}
+Symbol table stack
+{{v -> 0;}|}
+Output
+{}
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|}
+Symbol table stack
+{{v -> 0;}|}
+Output
+{}
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|}
+Symbol table stack
+{{v -> 0;}|}
+Output
+{}
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|(print(v);v=v+1)|}
+Symbol table stack
+{{v -> 0;}|}
+Output
+{}
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|(print(v);v=v+1)|}
+Symbol table stack
+{{v -> 0;}|}
+Output
+{}
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|v=v+1|print(v)|}
+Symbol table stack
+{{v -> 0;}|}
+Output
+{}
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|v=v+1|print(v)|}
+Symbol table stack
+{{v -> 0;}|}
+Output
+{}
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|v=v+1|}
+Symbol table stack
+{{v -> 0;}|}
+Output
+{0 }
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|v=v+1|}
+Symbol table stack
+{{v -> 0;}|}
+Output
+{0 }
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|}
+Symbol table stack
+{{v -> 1;}|}
+Output
+{0 }
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|}
+Symbol table stack
+{{v -> 1;}|}
+Output
+{0 }
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|(print(v);v=v+1)|}
+Symbol table stack
+{{v -> 1;}|}
+Output
+{0 }
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|(print(v);v=v+1)|}
+Symbol table stack
+{{v -> 1;}|}
+Output
+{0 }
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|v=v+1|print(v)|}
+Symbol table stack
+{{v -> 1;}|}
+Output
+{0 }
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|v=v+1|print(v)|}
+Symbol table stack
+{{v -> 1;}|}
+Output
+{0 }
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|v=v+1|}
+Symbol table stack
+{{v -> 1;}|}
+Output
+{0 1 }
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|v=v+1|}
+Symbol table stack
+{{v -> 1;}|}
+Output
+{0 1 }
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|}
+Symbol table stack
+{{v -> 2;}|}
+Output
+{0 1 }
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|}
+Symbol table stack
+{{v -> 2;}|}
+Output
+{0 1 }
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|(print(v);v=v+1)|}
+Symbol table stack
+{{v -> 2;}|}
+Output
+{0 1 }
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|(print(v);v=v+1)|}
+Symbol table stack
+{{v -> 2;}|}
+Output
+{0 1 }
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|v=v+1|print(v)|}
+Symbol table stack
+{{v -> 2;}|}
+Output
+{0 1 }
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|v=v+1|print(v)|}
+Symbol table stack
+{{v -> 2;}|}
+Output
+{0 1 }
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|v=v+1|}
+Symbol table stack
+{{v -> 2;}|}
+Output
+{0 1 2 }
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|v=v+1|}
+Symbol table stack
+{{v -> 2;}|}
+Output
+{0 1 2 }
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|}
+Symbol table stack
+{{v -> 3;}|}
+Output
+{0 1 2 }
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|}
+Symbol table stack
+{{v -> 3;}|}
+Output
+{0 1 2 }
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|(print(v);v=v+1)|}
+Symbol table stack
+{{v -> 3;}|}
+Output
+{0 1 2 }
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|(print(v);v=v+1)|}
+Symbol table stack
+{{v -> 3;}|}
+Output
+{0 1 2 }
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|v=v+1|print(v)|}
+Symbol table stack
+{{v -> 3;}|}
+Output
+{0 1 2 }
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|v=v+1|print(v)|}
+Symbol table stack
+{{v -> 3;}|}
+Output
+{0 1 2 }
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|v=v+1|}
+Symbol table stack
+{{v -> 3;}|}
+Output
+{0 1 2 3 }
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|v=v+1|}
+Symbol table stack
+{{v -> 3;}|}
+Output
+{0 1 2 3 }
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|}
+Symbol table stack
+{{v -> 4;}|}
+Output
+{0 1 2 3 }
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|}
+Symbol table stack
+{{v -> 4;}|}
+Output
+{0 1 2 3 }
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|(print(v);v=v+1)|}
+Symbol table stack
+{{v -> 4;}|}
+Output
+{0 1 2 3 }
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|(print(v);v=v+1)|}
+Symbol table stack
+{{v -> 4;}|}
+Output
+{0 1 2 3 }
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|v=v+1|print(v)|}
+Symbol table stack
+{{v -> 4;}|}
+Output
+{0 1 2 3 }
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|v=v+1|print(v)|}
+Symbol table stack
+{{v -> 4;}|}
+Output
+{0 1 2 3 }
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|v=v+1|}
+Symbol table stack
+{{v -> 4;}|}
+Output
+{0 1 2 3 4 }
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|v=v+1|}
+Symbol table stack
+{{v -> 4;}|}
+Output
+{0 1 2 3 4 }
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|}
+Symbol table stack
+{{v -> 5;}|}
+Output
+{0 1 2 3 4 }
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|}
+Symbol table stack
+{{v -> 5;}|}
+Output
+{0 1 2 3 4 }
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|(print(v);v=v+1)|}
+Symbol table stack
+{{v -> 5;}|}
+Output
+{0 1 2 3 4 }
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|(print(v);v=v+1)|}
+Symbol table stack
+{{v -> 5;}|}
+Output
+{0 1 2 3 4 }
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|v=v+1|print(v)|}
+Symbol table stack
+{{v -> 5;}|}
+Output
+{0 1 2 3 4 }
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|v=v+1|print(v)|}
+Symbol table stack
+{{v -> 5;}|}
+Output
+{0 1 2 3 4 }
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|v=v+1|}
+Symbol table stack
+{{v -> 5;}|}
+Output
+{0 1 2 3 4 5 }
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|v=v+1|}
+Symbol table stack
+{{v -> 5;}|}
+Output
+{0 1 2 3 4 5 }
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|}
+Symbol table stack
+{{v -> 6;}|}
+Output
+{0 1 2 3 4 5 }
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|}
+Symbol table stack
+{{v -> 6;}|}
+Output
+{0 1 2 3 4 5 }
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|(print(v);v=v+1)|}
+Symbol table stack
+{{v -> 6;}|}
+Output
+{0 1 2 3 4 5 }
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|(print(v);v=v+1)|}
+Symbol table stack
+{{v -> 6;}|}
+Output
+{0 1 2 3 4 5 }
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|v=v+1|print(v)|}
+Symbol table stack
+{{v -> 6;}|}
+Output
+{0 1 2 3 4 5 }
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|v=v+1|print(v)|}
+Symbol table stack
+{{v -> 6;}|}
+Output
+{0 1 2 3 4 5 }
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|v=v+1|}
+Symbol table stack
+{{v -> 6;}|}
+Output
+{0 1 2 3 4 5 6 }
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|v=v+1|}
+Symbol table stack
+{{v -> 6;}|}
+Output
+{0 1 2 3 4 5 6 }
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|}
+Symbol table stack
+{{v -> 7;}|}
+Output
+{0 1 2 3 4 5 6 }
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|}
+Symbol table stack
+{{v -> 7;}|}
+Output
+{0 1 2 3 4 5 6 }
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|(print(v);v=v+1)|}
+Symbol table stack
+{{v -> 7;}|}
+Output
+{0 1 2 3 4 5 6 }
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|(print(v);v=v+1)|}
+Symbol table stack
+{{v -> 7;}|}
+Output
+{0 1 2 3 4 5 6 }
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|v=v+1|print(v)|}
+Symbol table stack
+{{v -> 7;}|}
+Output
+{0 1 2 3 4 5 6 }
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|v=v+1|print(v)|}
+Symbol table stack
+{{v -> 7;}|}
+Output
+{0 1 2 3 4 5 6 }
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|v=v+1|}
+Symbol table stack
+{{v -> 7;}|}
+Output
+{0 1 2 3 4 5 6 7 }
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|v=v+1|}
+Symbol table stack
+{{v -> 7;}|}
+Output
+{0 1 2 3 4 5 6 7 }
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|}
+Symbol table stack
+{{v -> 8;}|}
+Output
+{0 1 2 3 4 5 6 7 }
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|}
+Symbol table stack
+{{v -> 8;}|}
+Output
+{0 1 2 3 4 5 6 7 }
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|(print(v);v=v+1)|}
+Symbol table stack
+{{v -> 8;}|}
+Output
+{0 1 2 3 4 5 6 7 }
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|(print(v);v=v+1)|}
+Symbol table stack
+{{v -> 8;}|}
+Output
+{0 1 2 3 4 5 6 7 }
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|v=v+1|print(v)|}
+Symbol table stack
+{{v -> 8;}|}
+Output
+{0 1 2 3 4 5 6 7 }
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|v=v+1|print(v)|}
+Symbol table stack
+{{v -> 8;}|}
+Output
+{0 1 2 3 4 5 6 7 }
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|v=v+1|}
+Symbol table stack
+{{v -> 8;}|}
+Output
+{0 1 2 3 4 5 6 7 8 }
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|v=v+1|}
+Symbol table stack
+{{v -> 8;}|}
+Output
+{0 1 2 3 4 5 6 7 8 }
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|}
+Symbol table stack
+{{v -> 9;}|}
+Output
+{0 1 2 3 4 5 6 7 8 }
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|}
+Symbol table stack
+{{v -> 9;}|}
+Output
+{0 1 2 3 4 5 6 7 8 }
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|(print(v);v=v+1)|}
+Symbol table stack
+{{v -> 9;}|}
+Output
+{0 1 2 3 4 5 6 7 8 }
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|(print(v);v=v+1)|}
+Symbol table stack
+{{v -> 9;}|}
+Output
+{0 1 2 3 4 5 6 7 8 }
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|v=v+1|print(v)|}
+Symbol table stack
+{{v -> 9;}|}
+Output
+{0 1 2 3 4 5 6 7 8 }
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|v=v+1|print(v)|}
+Symbol table stack
+{{v -> 9;}|}
+Output
+{0 1 2 3 4 5 6 7 8 }
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|v=v+1|}
+Symbol table stack
+{{v -> 9;}|}
+Output
+{0 1 2 3 4 5 6 7 8 9 }
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|v=v+1|}
+Symbol table stack
+{{v -> 9;}|}
+Output
+{0 1 2 3 4 5 6 7 8 9 }
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|}
+Symbol table stack
+{{v -> 10;}|}
+Output
+{0 1 2 3 4 5 6 7 8 9 }
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{(while(v<10)(print(v);v=v+1))|}
+Symbol table stack
+{{v -> 10;}|}
+Output
+{0 1 2 3 4 5 6 7 8 9 }
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
+ProgramState with id:1
+ExecutionStack
+{}
+Symbol table stack
+{{v -> 10;}|}
+Output
+{0 1 2 3 4 5 6 7 8 9 }
+File table
+{}
+Heap
+{}
+Semaphore table
+
+Barrier table
+{}
+Latch table
+{}
+
+
