@@ -9,10 +9,7 @@ import Model.Values.Value;
 import Repository.IRepository;
 
 import java.io.IOException;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -20,8 +17,10 @@ import java.util.stream.Stream;
 public class Controller {
     private IRepository repo;
     private ExecutorService executor;
+    private List<Exception> exceptionsList;
     public Controller(IRepository repo) {
         this.repo = repo;
+        exceptionsList = new ArrayList<Exception>();
     }
 
     public void executeOneStep() throws MyException {
@@ -41,6 +40,10 @@ public class Controller {
         }
     }
 
+    public List<Exception> getExceptionsList() {
+        return exceptionsList;
+    }
+
     public void oneStepForAll(List<ProgramState> programStates) throws InterruptedException {
         programStates.forEach(p-> {
             try {
@@ -58,6 +61,7 @@ public class Controller {
                     try {
                         return future.get();
                     } catch (InterruptedException | ExecutionException e) {
+                        exceptionsList.add(e);
                         return null;
                     }
                 })

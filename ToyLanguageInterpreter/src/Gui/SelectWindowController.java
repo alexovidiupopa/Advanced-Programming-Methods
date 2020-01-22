@@ -6,6 +6,9 @@ import Model.Exceptions.MyException;
 import Model.Expressions.*;
 import Model.ProgramState.ProgramState;
 import Model.Statements.*;
+import Model.Statements.Semaphore.AcquireStatement;
+import Model.Statements.Semaphore.CreateSemaphoreStatement;
+import Model.Statements.Semaphore.ReleaseStatement;
 import Model.Types.*;
 import Model.Values.BoolValue;
 import Model.Values.IntValue;
@@ -109,6 +112,36 @@ public class SelectWindowController implements Initializable {
                         )));
         IStatement ex10= new CompoundStatement(new VariableDeclarationStatement("v",new BoolType()), new CompoundStatement(new AssignmentStatement("v",new ValueExpression(new IntValue(2))), new PrintStatement(new VariableExpression("v"))));
         IStatement ex11= new CompoundStatement(new VariableDeclarationStatement("v",new IntType()), new CompoundStatement(new AssignmentStatement("v",new ValueExpression(new BoolValue(true))), new PrintStatement(new VariableExpression("v"))));
+        IStatement ex12 = new CompoundStatement(new VariableDeclarationStatement("a", new IntType()),new CompoundStatement(new VariableDeclarationStatement("b",new IntType()),
+                new CompoundStatement(new VariableDeclarationStatement("c",new IntType()),new CompoundStatement(new AssignmentStatement("a",new ValueExpression(new IntValue(1))),
+                        new CompoundStatement(new AssignmentStatement("b",new ValueExpression(new IntValue(2))), new CompoundStatement(new AssignmentStatement("c",new ValueExpression(new IntValue(5))),
+                                new CompoundStatement(new SwitchStatement(new ArithmeticExpression('*',new VariableExpression("a"),new ValueExpression(new IntValue(10))),new ArithmeticExpression('*', new VariableExpression("b"), new VariableExpression("c")),
+                                        new ValueExpression(new IntValue(10)), new CompoundStatement(new PrintStatement(new VariableExpression("a")),new PrintStatement(new VariableExpression("b"))),
+                                        new CompoundStatement(new PrintStatement(new ValueExpression(new IntValue(100))),new PrintStatement(new ValueExpression(new IntValue(200)))),new PrintStatement(new ValueExpression(new IntValue(300)))),new PrintStatement(new ValueExpression(new IntValue(300))))))))));
+        IStatement ex13 = new CompoundStatement(new VariableDeclarationStatement("a", new IntType()),new CompoundStatement(new VariableDeclarationStatement("b",new IntType()),
+                new CompoundStatement(new VariableDeclarationStatement("c",new IntType()),new CompoundStatement(new AssignmentStatement("a",new ValueExpression(new StringValue("hello"))),
+                        new CompoundStatement(new AssignmentStatement("b",new ValueExpression(new IntValue(2))), new CompoundStatement(new AssignmentStatement("c",new ValueExpression(new IntValue(5))),
+                                new CompoundStatement(new SwitchStatement(new ArithmeticExpression('*',new VariableExpression("a"),new ValueExpression(new IntValue(10))),new ArithmeticExpression('*', new VariableExpression("b"), new VariableExpression("c")),
+                                        new ValueExpression(new IntValue(10)), new CompoundStatement(new PrintStatement(new VariableExpression("a")),new PrintStatement(new VariableExpression("b"))),
+                                        new CompoundStatement(new PrintStatement(new ValueExpression(new IntValue(100))),new PrintStatement(new ValueExpression(new IntValue(200)))),new PrintStatement(new ValueExpression(new IntValue(300)))),new PrintStatement(new ValueExpression(new IntValue(300))))))))));
+
+        IStatement forked1 = new CompoundStatement(new AcquireStatement(new VariableExpression("cnt")),
+                new CompoundStatement(new HeapWriteStatement("v1",new ArithmeticExpression('*',new HeapReadExpression(new VariableExpression("v1")),new ValueExpression(new IntValue(10)))),
+                        new CompoundStatement(new PrintStatement(new HeapReadExpression(new VariableExpression("v1"))), new ReleaseStatement(new VariableExpression("cnt")))));
+
+        IStatement forked2 = new CompoundStatement(new AcquireStatement(new VariableExpression("cnt")),
+                new CompoundStatement(new HeapWriteStatement("v1",new ArithmeticExpression('*',new HeapReadExpression(new VariableExpression("v1")),new ValueExpression(new IntValue(10)))),
+                        new CompoundStatement(new HeapWriteStatement("v1", new ArithmeticExpression('*',new HeapReadExpression(new VariableExpression("v1")),new ValueExpression(new IntValue(2)))),
+                                new CompoundStatement(new PrintStatement(new HeapReadExpression(new VariableExpression("v1"))),new ReleaseStatement(new VariableExpression("cnt"))))));
+        IStatement ex14 = new CompoundStatement(new VariableDeclarationStatement("v1",new ReferenceType(new IntType())),
+                new CompoundStatement(new VariableDeclarationStatement("cnt", new IntType()),
+                        new CompoundStatement(new NewStatement("v1",new ValueExpression(new IntValue(1))),
+                                new CompoundStatement(new CreateSemaphoreStatement(new VariableExpression("cnt"), new HeapReadExpression(new VariableExpression("v1"))),
+                                        new CompoundStatement(new ForkStatement(forked1),
+                                                new CompoundStatement(new ForkStatement(forked2),
+                                                        new CompoundStatement(new AcquireStatement(new VariableExpression("cnt")),
+                                                                new CompoundStatement(new PrintStatement(new ArithmeticExpression('-',new HeapReadExpression(new VariableExpression("v1")),new ValueExpression(new IntValue(1)))),
+                                                                        new ReleaseStatement(new VariableExpression("cnt"))))))))));
         list.add(ex1);
         list.add(ex2);
         list.add(ex3);
@@ -120,6 +153,9 @@ public class SelectWindowController implements Initializable {
         list.add(ex9);
         list.add(ex10);
         list.add(ex11);
+        list.add(ex12);
+        list.add(ex13);
+        list.add(ex14);
         return list;
     }
 
@@ -142,7 +178,7 @@ public class SelectWindowController implements Initializable {
                 Alert alert = new Alert(Alert.AlertType.ERROR,e.getMessage());
                 alert.show();
             }
-
+            //mainWindowController.setController(controller);
         });
     }
 

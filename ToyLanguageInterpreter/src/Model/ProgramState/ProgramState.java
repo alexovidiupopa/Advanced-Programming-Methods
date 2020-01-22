@@ -4,9 +4,11 @@ import Model.ADTs.*;
 import Model.Exceptions.MyException;
 import Model.Statements.IStatement;
 import Model.Values.Value;
+import javafx.util.Pair;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.List;
 
 public class ProgramState {
     private IStack<IStatement> executionStack;
@@ -14,6 +16,16 @@ public class ProgramState {
     private IList<Value> output;
     private IDictionary<String, BufferedReader> fileTable;
     private IHeap<Value> heap;
+    private ISemaphoreTable<Pair<Integer, List<Integer>>> semaphoreTable;
+
+    public ISemaphoreTable<Pair<Integer, List<Integer>>> getSemaphoreTable() {
+        return semaphoreTable;
+    }
+
+    public void setSemaphoreTable(ISemaphoreTable<Pair<Integer, List<Integer>>> semaphoreTable) {
+        this.semaphoreTable = semaphoreTable;
+    }
+
     private int id;
     private static int globalID = 1;
 
@@ -45,7 +57,8 @@ public class ProgramState {
                 "SymbolTable\n" + symbolTable.toString() + "\n" +
                 "Output\n" + output.toString()  +
                 "File table\n" + fileTable.toString() + "\n" +
-                "Heap\n" + heap.toString() + "\n\n\n" ;
+                "Heap\n" + heap.toString() + "\n" +
+                "Semaphore table\n" + semaphoreTable.toString() + "\n\n\n";
     }
 
     public IHeap<Value> getHeap() {
@@ -76,12 +89,14 @@ public class ProgramState {
         this.output = output;
     }
 
-    public ProgramState(IStack<IStatement> executionStack, IDictionary<String, Value> symbolTable, IHeap<Value> heap, IList<Value> output, IDictionary<String,BufferedReader> fileTable,IStatement originalProgram) {
+    public ProgramState(IStack<IStatement> executionStack, IDictionary<String, Value> symbolTable, IHeap<Value> heap, IList<Value> output, IDictionary<String,BufferedReader> fileTable,
+                        ISemaphoreTable<Pair<Integer,List<Integer>>> semaphoreTable,IStatement originalProgram) {
         this.executionStack = executionStack;
         this.symbolTable = symbolTable;
         this.heap = heap;
         this.output = output;
         this.fileTable = fileTable;
+        this.semaphoreTable=semaphoreTable;
         //this.originalProgram = clone((Object)originalProgram);
         this.executionStack.push(originalProgram);
         this.id = getGlobalID();
@@ -93,6 +108,7 @@ public class ProgramState {
         this.output = new MyList<Value>();
         this.fileTable = new MyDictionary<String,BufferedReader>();
         this.heap = new MyHeap<>();
+        this.semaphoreTable = new MySemaphoreTable<>();
         this.id = 1;
         this.executionStack.push(originalProgram);
     }

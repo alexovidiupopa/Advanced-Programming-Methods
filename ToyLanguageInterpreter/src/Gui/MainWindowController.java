@@ -15,6 +15,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.util.Pair;
+
 import java.net.URL;
 import java.util.*;
 import java.util.List;
@@ -22,6 +24,14 @@ import java.util.stream.Collectors;
 
 public class MainWindowController implements Initializable {
 
+    @FXML
+    private TableView<Map.Entry<Integer, Pair<Integer,List<Integer>>>> semaphoreTableView;
+    @FXML
+    private TableColumn<Map.Entry<Integer, Pair<Integer,List<Integer>>>,String> indexColumn;
+    @FXML
+    private TableColumn<Map.Entry<Integer, Pair<Integer,List<Integer>>>,String> valueColumn;
+    @FXML
+    private TableColumn<Map.Entry<Integer, Pair<Integer,List<Integer>>>,String> listColumn;
     @FXML
     private ListView<String> exeStackVIew;
     @FXML
@@ -71,6 +81,9 @@ public class MainWindowController implements Initializable {
 
         progIdentifiersView.setOnMouseClicked(mouseEvent -> changeProgramStateHandler(getSelectedProgramState()));
 
+        indexColumn.setCellValueFactory(p->new SimpleStringProperty(p.getValue().getKey() + " "));
+        valueColumn.setCellValueFactory(p->new SimpleStringProperty(p.getValue().getValue().getKey() + " "));
+        listColumn.setCellValueFactory(p->new SimpleStringProperty(p.getValue().getValue().getValue() + " "));
         execButton.setDisable(true);
     }
 
@@ -85,6 +98,7 @@ public class MainWindowController implements Initializable {
             populateFileTableView(currentProgState);
             populateExeStackView(currentProgState);
             populateSymTableView(currentProgState);
+            populateSemaphoreTableView(currentProgState);
         } catch (MyException e) {
             Alert error = new Alert(Alert.AlertType.ERROR,e.getMessage());
             error.show();
@@ -109,9 +123,13 @@ public class MainWindowController implements Initializable {
             changeProgramStateHandler(programState);
             if(controller.getRepo().getProgramList().size()==0)
                 execButton.setDisable(true);
-        } catch (MyException e) {
+            if(controller.getExceptionsList().size()!=0){
+                throw controller.getExceptionsList().get(0);
+            }
+        } catch (Exception e) {
             Alert error = new Alert(Alert.AlertType.ERROR,e.getMessage());
             error.show();
+            execButton.setDisable(true);
         }
 
     }
@@ -151,6 +169,10 @@ public class MainWindowController implements Initializable {
         symbolTableView.refresh();
     }
 
+    private void populateSemaphoreTableView(ProgramState givenProgramState){
+        semaphoreTableView.setItems(FXCollections.observableList(new ArrayList<>(givenProgramState.getSemaphoreTable().getSemaphoreTable().entrySet())));
+        semaphoreTableView.refresh();
+    }
     private ProgramState getSelectedProgramState(){
         if(progIdentifiersView.getSelectionModel().getSelectedIndex()==-1)
             return null;

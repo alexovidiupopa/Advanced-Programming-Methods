@@ -26,7 +26,7 @@ public class ForkStatement implements IStatement {
 
     @Override
     public ProgramState execute(ProgramState state) throws MyException, IOException {
-        return new  ProgramState(new MyStack<>(),state.getSymbolTable().clone(),state.getHeap(),state.getOutput(),state.getFileTable(),statement);
+        return new  ProgramState(new MyStack<>(),state.getSymbolTable().clone(),state.getHeap(),state.getOutput(),state.getFileTable(),state.getSemaphoreTable(),statement);
 
     }
 
